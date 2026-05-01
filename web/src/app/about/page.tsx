@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
+import { siteBulletListLiClass, siteCardStackClass } from "@/lib/layoutTheme";
 import { getSiteRuntime } from "@/lib/runtimeContent";
 
 export const metadata: Metadata = {
@@ -11,6 +12,12 @@ export const metadata: Metadata = {
 export default async function AboutPage() {
   const site = await getSiteRuntime();
   const about = site.about;
+  const stackMission = siteCardStackClass("start");
+  const stackVision = siteCardStackClass("start");
+  const bulletsMission = siteBulletListLiClass("start");
+  const bulletsVision = siteBulletListLiClass("start");
+  const cardStats = siteCardStackClass("start");
+  const cardValues = siteCardStackClass("start");
 
   return (
     <div>
@@ -23,13 +30,13 @@ export default async function AboutPage() {
 
       <section className="py-12">
         <Container className="grid gap-5 md:grid-cols-2">
-          <div className="rounded-[var(--radius-lg)] border border-border bg-[#f2fff5] p-7">
-            <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand/15 text-brand">
+          <div className={`rounded-[var(--radius-lg)] border border-border bg-[#f2fff5] p-7 ${stackMission}`}>
+            <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
               ◎
             </div>
             <h2 className="mt-4 text-lg font-extrabold">{about.mission.title}</h2>
             <p className="mt-2 text-sm text-muted">{about.mission.body}</p>
-            <ul className="mt-4 space-y-2 text-sm text-foreground/80">
+            <ul className={`mt-4 w-full space-y-2 text-sm text-foreground/80 ${bulletsMission}`}>
               {about.mission.bullets.map((b: string) => (
                 <li key={b} className="flex gap-2">
                   <span className="mt-0.5 text-brand">✓</span>
@@ -39,13 +46,13 @@ export default async function AboutPage() {
             </ul>
           </div>
 
-          <div className="rounded-[var(--radius-lg)] border border-border bg-[#f2f7ff] p-7">
-            <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent/15 text-accent">
+          <div className={`rounded-[var(--radius-lg)] border border-border bg-[#f2f7ff] p-7 ${stackVision}`}>
+            <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
               ◉
             </div>
             <h2 className="mt-4 text-lg font-extrabold">{about.vision.title}</h2>
             <p className="mt-2 text-sm text-muted">{about.vision.body}</p>
-            <ul className="mt-4 space-y-2 text-sm text-foreground/80">
+            <ul className={`mt-4 w-full space-y-2 text-sm text-foreground/80 ${bulletsVision}`}>
               {about.vision.bullets.map((b: string) => (
                 <li key={b} className="flex gap-2">
                   <span className="mt-0.5 text-accent">✓</span>
@@ -60,7 +67,7 @@ export default async function AboutPage() {
       <section className="pb-12">
         <Container className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {about.stats.map((s) => (
-            <div key={s.label} className="rounded-[var(--radius-lg)] border border-border bg-surface p-6 text-center">
+            <div key={s.label} className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${cardStats}`}>
               <div className="text-2xl font-extrabold text-brand">{s.value}</div>
               <div className="mt-1 text-xs font-semibold text-muted">{s.label}</div>
             </div>
@@ -102,8 +109,8 @@ export default async function AboutPage() {
           <h2 className="text-center text-2xl font-extrabold tracking-tight">{about.values.title}</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {about.values.items.map((v) => (
-              <div key={v.title} className="rounded-[var(--radius-lg)] border border-border bg-surface p-6">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/15 text-brand">
+              <div key={v.title} className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${cardValues}`}>
+                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
                   ✦
                 </div>
                 <div className="mt-4 font-extrabold">{v.title}</div>

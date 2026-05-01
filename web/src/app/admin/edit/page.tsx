@@ -85,7 +85,28 @@ export default function AdminEditPage() {
                     setStatus(await res.text());
                     return;
                   }
-                  setStatus("Saved site.json. Refresh the website to see updates.");
+                  const data = (await res.json()) as {
+                    site?: SiteConfig;
+                    createdProductIds?: string[];
+                  };
+                  if (data.site) {
+                    setSite(deepClone(data.site));
+                  }
+                  const created = data.createdProductIds?.length
+                    ? ` New JSON: ${data.createdProductIds.join(", ")} — edit details under Solutions → Products.`
+                    : "";
+                  setStatus(`Saved site.${created} Refresh if needed.`.trim());
+
+                  const pres = await fetch("/api/admin/products");
+                  if (pres.ok) {
+                    const p = (await pres.json()) as {
+                      files: { filename: string; json: Product | null }[];
+                    };
+                    setProducts(p.files);
+                    setActiveProductFile((cur) =>
+                      p.files.some((f) => f.filename === cur) ? cur : (p.files[0]?.filename ?? "")
+                    );
+                  }
                 } finally {
                   setSaving(false);
                 }
@@ -307,12 +328,19 @@ export default function AdminEditPage() {
                           : s
                       )
                     }
-                    newItem={() => ({ label: "New Product", href: "/solutions" })}
+                    newItem={() => ({ label: "New product", href: "" })}
                     schema={[
                       { key: "label", label: "Label" },
-                      { key: "href", label: "Href" },
+                      { key: "href", label: "Href (optional; filled on Save if new)" },
                     ]}
                   />
+                  <p className="text-xs text-muted leading-relaxed">
+                    <strong>Save Site</strong> creates <span className="font-mono">content/products/product-1.json</span>,
+                    etc. for any tile that doesn&apos;t match an existing catalog file (iterative ids). Tiles that
+                    already match a file keep their record; links are normalized to{" "}
+                    <span className="font-mono">/solutions?product=&lt;id&gt;</span>. Edit specs, media, and CTA under{" "}
+                    <strong>Solutions → Products</strong>.
+                  </p>
 
                   <div className="text-sm font-extrabold">Why choose</div>
                   <AdminField

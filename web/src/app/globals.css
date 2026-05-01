@@ -48,6 +48,28 @@
   --accent: #0ea5e9;
 }
 
+[data-theme="greenSubtle"] {
+  --brand: #3f7d5c;
+  --brand2: #6aab7d;
+  --accent: #2f6f64;
+  --background: #f7faf8;
+  --surface: #ffffff;
+  --foreground: #16231c;
+  --muted: #5c6f64;
+  --border: rgba(22, 35, 28, 0.1);
+}
+
+[data-theme="orangeSubtle"] {
+  --brand: #c9643a;
+  --brand2: #e8a074;
+  --accent: #b45309;
+  --background: #fffaf6;
+  --surface: #ffffff;
+  --foreground: #1f140e;
+  --muted: #6b5345;
+  --border: rgba(31, 20, 14, 0.1);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

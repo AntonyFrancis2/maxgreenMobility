@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
+import { siteCardStackClass, siteCardTitleRowClass } from "@/lib/layoutTheme";
 import { Button } from "@/components/Button";
 import { MailtoForm } from "@/components/MailtoForm";
 import { getSiteRuntime } from "@/lib/runtimeContent";
@@ -12,6 +13,10 @@ export const metadata: Metadata = {
 export default async function ContactPage() {
   const site = await getSiteRuntime();
   const contact = site.contact;
+  const cardContact = siteCardStackClass("start");
+  const cardLocs = siteCardStackClass("start");
+  const cardOther = siteCardStackClass("start");
+  const titleLocs = siteCardTitleRowClass("start");
 
   return (
     <div>
@@ -25,8 +30,8 @@ export default async function ContactPage() {
       <section className="py-12">
         <Container className="grid gap-4 md:grid-cols-3">
           {contact.cards.map((c) => (
-            <div key={c.title} className="rounded-[var(--radius-lg)] border border-border bg-surface p-6">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/15 text-brand">
+            <div key={c.title} className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${cardContact}`}>
+              <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
                 {c.title === "Call Us" ? "☎" : c.title === "Email Us" ? "✉" : "◷"}
               </div>
               <div className="mt-4 text-sm font-extrabold">{c.title}</div>
@@ -45,8 +50,8 @@ export default async function ContactPage() {
           <h2 className="text-center text-2xl font-extrabold tracking-tight">{contact.locations.title}</h2>
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             {contact.locations.items.map((loc) => (
-              <div key={loc.title} className="rounded-[var(--radius-lg)] border border-border bg-surface p-6">
-                <div className="flex items-center gap-2 text-sm font-extrabold">
+              <div key={loc.title} className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${cardLocs}`}>
+                <div className={titleLocs}>
                   <span className="text-brand">⌂</span> {loc.title}
                 </div>
                 <div className="mt-4 space-y-1 text-sm text-muted">
@@ -127,7 +132,10 @@ export default async function ContactPage() {
                   name: "product",
                   label: "Product of Interest*",
                   required: true,
-                  options: site.home.products.items.map((p) => ({ label: p.label, value: p.label })),
+                  options: (site.home.products.items ?? []).map((p) => ({
+                    label: p.label,
+                    value: p.label,
+                  })),
                 },
                 {
                   kind: "text",
@@ -178,8 +186,8 @@ export default async function ContactPage() {
           <h2 className="text-center text-2xl font-extrabold tracking-tight">{contact.otherWays.title}</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {contact.otherWays.items.map((it) => (
-              <div key={it.title} className="rounded-[var(--radius-lg)] border border-border bg-surface p-6 text-center">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/15 text-brand">
+              <div key={it.title} className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${cardOther}`}>
+                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
                   {it.title.includes("WhatsApp") ? "💬" : it.title.includes("Schedule") ? "📅" : "🤝"}
                 </div>
                 <div className="mt-4 font-extrabold">{it.title}</div>

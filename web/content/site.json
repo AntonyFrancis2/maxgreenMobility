@@ -162,6 +162,32 @@
           "muted": "#64748b",
           "border": "rgba(15, 23, 42, 0.10)"
         }
+      },
+      "greenSubtle": {
+        "label": "Forest (soft)",
+        "tokens": {
+          "brand": "#3f7d5c",
+          "brand2": "#6aab7d",
+          "accent": "#2f6f64",
+          "background": "#f7faf8",
+          "surface": "#ffffff",
+          "foreground": "#16231c",
+          "muted": "#5c6f64",
+          "border": "rgba(22, 35, 28, 0.10)"
+        }
+      },
+      "orangeSubtle": {
+        "label": "Amber (soft)",
+        "tokens": {
+          "brand": "#c9643a",
+          "brand2": "#e8a074",
+          "accent": "#b45309",
+          "background": "#fffaf6",
+          "surface": "#ffffff",
+          "foreground": "#1f140e",
+          "muted": "#6b5345",
+          "border": "rgba(31, 20, 14, 0.10)"
+        }
       }
     }
   },
@@ -298,6 +324,10 @@
         {
           "label": "E-Loader",
           "href": "/solutions?product=e-loader"
+        },
+        {
+          "label": "test2",
+          "href": "/solutions?product=product-1"
         }
       ]
     },

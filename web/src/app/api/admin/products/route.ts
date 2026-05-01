@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdminAuthed } from "@/lib/adminAuth";
 import path from "path";
 import { readdir, readFile, writeFile } from "fs/promises";
+import { ensureProductJsonShape } from "@/lib/coerceProduct";
 import { commitTextFile, githubEnabled, toRepoContentPath } from "@/lib/githubContent";
 
 function productsDir() {
@@ -18,7 +19,7 @@ export async function GET() {
   for (const filename of files) {
     try {
       const raw = await readFile(path.join(dir, filename), "utf8");
-      products.push({ filename, json: JSON.parse(raw) });
+      products.push({ filename, json: ensureProductJsonShape(JSON.parse(raw)) });
     } catch {
       products.push({ filename, json: null });
     }
@@ -35,7 +36,8 @@ export async function POST(req: Request) {
     return new NextResponse("Invalid filename", { status: 400 });
   }
 
-  const text = JSON.stringify(body?.json ?? {}, null, 2) + "\n";
+  const normalized = ensureProductJsonShape(body?.json ?? {});
+  const text = JSON.stringify(normalized, null, 2) + "\n";
 
   if (githubEnabled()) {
     const repoPath = toRepoContentPath(`content/products/${filename}`);

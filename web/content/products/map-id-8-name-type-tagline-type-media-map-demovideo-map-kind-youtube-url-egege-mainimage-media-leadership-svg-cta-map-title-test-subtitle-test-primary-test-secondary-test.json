@@ -1,18 +1,36 @@
 {
   "id": "8",
-  "name": "type",
-  "tagline": "type",
+  "name": "test",
+  "tagline": "test test test",
   "media": {
     "demoVideo": {
       "kind": "youtube",
       "url": "egege"
     },
-    "mainImage": "/media/leadership.svg"
+    "mainImage": "/media/leadership.svg",
+    "views": []
   },
   "cta": {
     "title": "test",
     "subtitle": "test",
     "primary": "test ",
     "secondary": "test"
-  }
+  },
+  "specs": [
+    {
+      "label": "Spec",
+      "value": "abcd"
+    }
+  ],
+  "features": [
+    "XYZ"
+  ],
+  "kpis": [
+    {
+      "label": "Metric",
+      "value": "0100",
+      "subLabel": "blah",
+      "tone": "brand"
+    }
+  ]
 }

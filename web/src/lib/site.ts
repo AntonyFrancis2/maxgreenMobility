@@ -4,7 +4,9 @@ import electricRickshaw from "../../content/products/electric-rickshaw.json";
 import electricScooter from "../../content/products/electric-scooter.json";
 import eLoader from "../../content/products/e-loader.json";
 
-export type ThemePresetId = "green" | "blue" | "teal" | "purple";
+export type ThemePresetId = "green" | "blue" | "teal" | "purple" | "greenSubtle" | "orangeSubtle";
+
+export type CardAlign = "start" | "center" | "end";
 
 export type SiteConfig = {
   brand: {

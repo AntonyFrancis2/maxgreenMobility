@@ -9,10 +9,11 @@ export function AdminStringList({
   placeholder = "Value",
 }: {
   label: string;
-  items: string[];
+  items: string[] | undefined;
   onChange: (next: string[]) => void;
   placeholder?: string;
 }) {
+  const list = items ?? [];
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between gap-3">
@@ -20,20 +21,20 @@ export function AdminStringList({
         <button
           type="button"
           className="rounded-xl bg-white/80 px-3 py-2 text-xs font-bold ring-1 ring-border hover:bg-white/90"
-          onClick={() => onChange([...(items ?? []), ""])}
+          onClick={() => onChange([...list, ""])}
         >
           + Add
         </button>
       </div>
       <div className="space-y-2">
-        {items.map((v, idx) => (
+        {list.map((v, idx) => (
           <div key={idx} className="flex gap-2">
             <input
               className="w-full rounded-xl border border-border px-3 py-2 text-sm"
               value={v}
               placeholder={placeholder}
               onChange={(e) => {
-                const next = [...items];
+                const next = [...list];
                 next[idx] = e.target.value;
                 onChange(next);
               }}
@@ -41,14 +42,14 @@ export function AdminStringList({
             <button
               type="button"
               className="rounded-xl px-3 py-2 text-xs font-bold ring-1 ring-border hover:bg-surface/60"
-              onClick={() => onChange(items.filter((_, i) => i !== idx))}
+              onClick={() => onChange(list.filter((_, i) => i !== idx))}
               aria-label="Remove"
             >
               ✕
             </button>
           </div>
         ))}
-        {items.length === 0 ? <div className="text-sm text-muted">No items.</div> : null}
+        {list.length === 0 ? <div className="text-sm text-muted">No items.</div> : null}
       </div>
     </div>
   );
@@ -62,11 +63,12 @@ export function AdminObjectList<T extends Record<string, unknown>>({
   newItem,
 }: {
   label: string;
-  items: T[];
+  items: T[] | undefined;
   onChange: (next: T[]) => void;
   newItem: () => T;
   schema: { key: keyof T; label: string; textarea?: boolean }[];
 }) {
+  const list = items ?? [];
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between gap-3">
@@ -74,21 +76,21 @@ export function AdminObjectList<T extends Record<string, unknown>>({
         <button
           type="button"
           className="rounded-xl bg-white/80 px-3 py-2 text-xs font-bold ring-1 ring-border hover:bg-white/90"
-          onClick={() => onChange([...(items ?? []), newItem()])}
+          onClick={() => onChange([...list, newItem()])}
         >
           + Add
         </button>
       </div>
 
       <div className="space-y-3">
-        {items.map((it, idx) => (
+        {list.map((it, idx) => (
           <div key={idx} className="rounded-[var(--radius-lg)] border border-border bg-white/80 p-3">
             <div className="flex items-center justify-between">
               <div className="text-xs font-semibold text-muted">Item {idx + 1}</div>
               <button
                 type="button"
                 className="rounded-xl px-3 py-2 text-xs font-bold ring-1 ring-border hover:bg-surface/60"
-                onClick={() => onChange(items.filter((_, i) => i !== idx))}
+                onClick={() => onChange(list.filter((_, i) => i !== idx))}
               >
                 Remove
               </button>
@@ -102,7 +104,7 @@ export function AdminObjectList<T extends Record<string, unknown>>({
                   textarea={f.textarea}
                   value={String(it[f.key] ?? "")}
                   onChange={(v) => {
-                    const next = [...items];
+                    const next = [...list];
                     next[idx] = { ...next[idx], [f.key]: v } as T;
                     onChange(next);
                   }}
@@ -111,7 +113,7 @@ export function AdminObjectList<T extends Record<string, unknown>>({
             </div>
           </div>
         ))}
-        {items.length === 0 ? <div className="text-sm text-muted">No items.</div> : null}
+        {list.length === 0 ? <div className="text-sm text-muted">No items.</div> : null}
       </div>
     </div>
   );

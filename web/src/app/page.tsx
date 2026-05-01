@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { Accordion } from "@/components/Accordion";
 import { MailtoForm } from "@/components/MailtoForm";
+import { siteCardStackClass } from "@/lib/layoutTheme";
 import { getSiteRuntime } from "@/lib/runtimeContent";
 
 export const metadata: Metadata = {
@@ -14,6 +15,9 @@ export const metadata: Metadata = {
 export default async function Home() {
   const site = await getSiteRuntime();
   const home = site.home;
+  const productItems = home.products.items ?? [];
+  const stack = siteCardStackClass("start");
+
   return (
     <div>
       <section className="bg-brand py-16 text-white">
@@ -45,12 +49,12 @@ export default async function Home() {
             <h2 className="text-2xl font-extrabold tracking-tight">{home.products.title}</h2>
             <p className="mt-2 text-sm text-muted">{home.products.subtitle}</p>
           </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {home.products.items.map((p) => (
+          <div className="mt-8 flex flex-wrap justify-center gap-5 px-2">
+            {productItems.map((p) => (
               <Link
                 key={p.label}
                 href={p.href}
-                className="rounded-[var(--radius-lg)] border border-border bg-surface p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                className={`w-full max-w-[280px] rounded-[var(--radius-lg)] border border-border bg-surface p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:w-[280px] sm:shrink-0 ${stack}`}
               >
                 <div className="h-20 rounded-xl bg-brand/15" />
                 <div className="mt-4 text-sm font-bold">{p.label}</div>
@@ -68,8 +72,8 @@ export default async function Home() {
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {home.whyChoose.items.map((it) => (
-              <div key={it.title} className="rounded-[var(--radius-lg)] border border-border bg-surface p-6">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/15 text-brand">
+              <div key={it.title} className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${stack}`}>
+                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
                   ✓
                 </div>
                 <div className="mt-4 font-bold">{it.title}</div>
@@ -105,7 +109,10 @@ export default async function Home() {
           </div>
           <div className="mt-7 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
             {home.industries.items.map((i: string) => (
-              <div key={i} className="rounded-[var(--radius-lg)] border border-border bg-surface p-4 text-center text-sm font-semibold">
+              <div
+                key={i}
+                className={`rounded-[var(--radius-lg)] border border-border bg-surface p-4 text-sm font-semibold ${stack}`}
+              >
                 {i}
               </div>
             ))}
@@ -120,7 +127,7 @@ export default async function Home() {
           </div>
           <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {home.savings.items.map((s) => (
-              <div key={s.title} className="rounded-[var(--radius-lg)] border border-border bg-white p-5">
+              <div key={s.title} className={`rounded-[var(--radius-lg)] border border-border bg-white p-5 ${stack}`}>
                 <div className="text-xs font-semibold text-muted">{s.title}</div>
                 <div className="mt-2 text-2xl font-extrabold text-brand">{s.value}</div>
                 <div className="mt-1 text-xs text-muted">{s.note}</div>
@@ -188,7 +195,7 @@ export default async function Home() {
                   name: "product",
                   label: "Product of Interest",
                   colSpan: 2,
-                  options: home.products.items.map((p) => ({ label: p.label, value: p.label })),
+                  options: productItems.map((p) => ({ label: p.label, value: p.label })),
                 },
                 {
                   kind: "textarea",

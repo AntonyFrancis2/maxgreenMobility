@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
+import { siteBulletListLiClass, siteCardStackClass, siteCardTitleRowClass } from "@/lib/layoutTheme";
 import type { Product } from "@/lib/site";
 
 function toneClasses(tone: Product["kpis"][number]["tone"]) {
@@ -22,13 +23,68 @@ function toneClasses(tone: Product["kpis"][number]["tone"]) {
 
 export function SolutionsClient({ products }: { products: Product[] }) {
   const searchParams = useSearchParams();
-  const initialId = searchParams.get("product") ?? products[0]?.id ?? "electric-cart";
+  const stackSpecs = siteCardStackClass("start");
+  const stackFeatures = siteCardStackClass("start");
+  const stackKpis = siteCardStackClass("start");
+  const featureListAlign = siteBulletListLiClass("start");
+  const titleSpecs = siteCardTitleRowClass("start");
+  const titleFeatures = siteCardTitleRowClass("start");
 
-  const [selectedId, setSelectedId] = useState<string>(initialId);
-  const product = useMemo(() => products.find((p) => p.id === selectedId) ?? products[0], [selectedId, products]);
-  const [activeViewId, setActiveViewId] = useState<string>(product.media.views[0]?.id ?? "");
+  const queryId = searchParams.get("product");
+  const initialSelected =
+    queryId && products.some((p) => p.id === queryId)
+      ? queryId
+      : (products[0]?.id ?? "");
 
-  const activeView = product.media.views.find((v) => v.id === activeViewId) ?? product.media.views[0];
+  const [selectedId, setSelectedId] = useState(initialSelected);
+
+  useEffect(() => {
+    const q = searchParams.get("product");
+    if (!products.length) {
+      setSelectedId("");
+      return;
+    }
+    if (!products.some((p) => p.id === selectedId)) {
+      setSelectedId(
+        q && products.some((p) => p.id === q)
+          ? q
+          : products[0].id
+      );
+    }
+  }, [products, selectedId, searchParams]);
+
+  const product =
+    useMemo(
+      () => (products.length ? products.find((p) => p.id === selectedId) ?? products[0] ?? null : null),
+      [selectedId, products]
+    );
+
+  const [activeViewId, setActiveViewId] = useState("");
+
+  useEffect(() => {
+    const p = products.find((x) => x.id === selectedId);
+    const views = p?.media.views;
+    if (!views?.length) return;
+    setActiveViewId((cur) => (cur && views.some((v) => v.id === cur) ? cur : views[0].id));
+  }, [selectedId, products]);
+
+  const activeView =
+    product?.media.views.find((v) => v.id === activeViewId) ?? product?.media.views[0];
+
+  if (!products.length || !product || !activeView) {
+    return (
+      <div>
+        <section className="bg-brand py-14 text-white">
+          <Container className="text-center">
+            <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl">Our Solutions</h1>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-white/85">
+              Add products on the Home page under Our Products—they will appear here automatically.
+            </p>
+          </Container>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -127,8 +183,8 @@ export function SolutionsClient({ products }: { products: Product[] }) {
           </div>
 
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
-            <div className="rounded-[var(--radius-lg)] border border-border bg-surface p-6">
-              <div className="flex items-center gap-2 text-sm font-extrabold">
+            <div className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${stackSpecs}`}>
+              <div className={titleSpecs}>
                 <span className="text-brand">⚙</span> Technical Specifications
               </div>
               <dl className="mt-4 space-y-3 text-sm">
@@ -144,11 +200,11 @@ export function SolutionsClient({ products }: { products: Product[] }) {
               </dl>
             </div>
 
-            <div className="rounded-[var(--radius-lg)] border border-border bg-surface p-6">
-              <div className="flex items-center gap-2 text-sm font-extrabold">
+            <div className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${stackFeatures}`}>
+              <div className={titleFeatures}>
                 <span className="text-brand">🔑</span> Key Features
               </div>
-              <ul className="mt-4 space-y-3 text-sm text-foreground/85">
+              <ul className={`mt-4 w-full space-y-3 text-sm text-foreground/85 ${featureListAlign}`}>
                 {product.features.map((f) => (
                   <li key={f} className="flex gap-2">
                     <span className="mt-0.5 text-brand">✓</span>
@@ -161,7 +217,7 @@ export function SolutionsClient({ products }: { products: Product[] }) {
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {product.kpis.map((k) => (
-              <div key={k.label} className={`rounded-[var(--radius-lg)] p-6 ${toneClasses(k.tone)}`}>
+              <div key={k.label} className={`rounded-[var(--radius-lg)] p-6 ${toneClasses(k.tone)} ${stackKpis}`}>
                 <div className="text-xs font-semibold text-white/80">{k.label}</div>
                 <div className="mt-2 text-2xl font-extrabold">{k.value}</div>
                 {k.subLabel ? <div className="mt-1 text-xs text-white/80">{k.subLabel}</div> : null}

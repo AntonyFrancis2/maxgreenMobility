@@ -1,24 +1,61 @@
 {
-  "id": "electric-scooter",
+  "id": "8",
   "name": "Electric Scooter",
   "tagline": "Quick Last-Mile Delivery",
   "media": {
     "mainImage": "/media/products/electric-scooter.svg",
-    "demoVideo": { "kind": "youtube", "url": "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    "demoVideo": {
+      "kind": "youtube",
+      "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    },
     "views": [
-      { "id": "v1", "label": "View 1", "image": "/media/products/electric-scooter.svg" },
-      { "id": "v2", "label": "View 2", "image": "/media/products/electric-scooter.svg" },
-      { "id": "v3", "label": "View 3", "image": "/media/products/electric-scooter.svg" },
-      { "id": "v4", "label": "View 4", "image": "/media/products/electric-scooter.svg" }
+      {
+        "id": "v1",
+        "label": "View 1",
+        "image": "/media/products/electric-scooter.svg"
+      },
+      {
+        "id": "v2",
+        "label": "View 2",
+        "image": "/media/products/electric-scooter.svg"
+      },
+      {
+        "id": "v3",
+        "label": "View 3",
+        "image": "/media/products/electric-scooter.svg"
+      },
+      {
+        "id": "v4",
+        "label": "View 4",
+        "image": "/media/products/electric-scooter.svg"
+      }
     ]
   },
   "specs": [
-    { "label": "Motor Power", "value": "800W BLDC Motor" },
-    { "label": "Battery", "value": "48V 60Ah Lithium-ion" },
-    { "label": "Range", "value": "60–80 km per charge" },
-    { "label": "Top Speed", "value": "45 km/h" },
-    { "label": "Payload", "value": "150 kg" },
-    { "label": "Charging Time", "value": "4–6 hours" }
+    {
+      "label": "Motor Power",
+      "value": "800W BLDC Motor"
+    },
+    {
+      "label": "Battery",
+      "value": "48V 60Ah Lithium-ion"
+    },
+    {
+      "label": "Range",
+      "value": "60–80 km per charge"
+    },
+    {
+      "label": "Top Speed",
+      "value": "45 km/h"
+    },
+    {
+      "label": "Payload",
+      "value": "150 kg"
+    },
+    {
+      "label": "Charging Time",
+      "value": "4–6 hours"
+    }
   ],
   "features": [
     "Fast acceleration for city rides",
@@ -28,10 +65,28 @@
     "Anti-theft lock (optional)"
   ],
   "kpis": [
-    { "label": "Range", "value": "60–80 km", "subLabel": "per charge", "tone": "brand" },
-    { "label": "Power", "value": "800W", "subLabel": "BLDC", "tone": "blue" },
-    { "label": "Top speed", "value": "45 km/h", "tone": "purple" },
-    { "label": "Charge time", "value": "4–6 hours", "tone": "orange" }
+    {
+      "label": "Range",
+      "value": "60–80 km",
+      "subLabel": "per charge",
+      "tone": "brand"
+    },
+    {
+      "label": "Power",
+      "value": "800W",
+      "subLabel": "BLDC",
+      "tone": "blue"
+    },
+    {
+      "label": "Top speed",
+      "value": "45 km/h",
+      "tone": "purple"
+    },
+    {
+      "label": "Charge time",
+      "value": "4–6 hours",
+      "tone": "orange"
+    }
   ],
   "cta": {
     "title": "Interested in Electric Scooter?",
@@ -40,4 +95,3 @@
     "secondary": "Schedule Demo"
   }
 }
-
