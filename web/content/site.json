@@ -101,8 +101,8 @@
     }
   ],
   "topRight": {
-    "phoneLabel": "+91 123 456 7890",
-    "phoneValue": "+911234567890"
+    "phoneLabel": "+91 7600108665",
+    "phoneValue": "+917600108665"
   },
   "brand": {
     "name": "Maxgreen Mobility",
@@ -288,8 +288,8 @@
     "contact": [
       {
         "label": "Phone",
-        "value": "+91 123 456 7890",
-        "href": "tel:+911234567890"
+        "value": "+91 7600108665",
+        "href": "tel:+917600108665"
       },
       {
         "label": "Email",
@@ -298,8 +298,8 @@
       }
     ],
     "officeAddress": [
-      "123, Green Park, Sector 10",
-      "Bengaluru, Karnataka 560001",
+      "Plot - 9, Shayona silver estate, part- 2, Near KCT laboratory, Gota",
+      "Ahmedabad, Gujarat - 382481",
       "India"
     ],
     "copyright": "© 2026 Maxgreen Mobility. All rights reserved."
