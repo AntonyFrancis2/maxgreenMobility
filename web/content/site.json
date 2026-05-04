@@ -108,7 +108,7 @@
     "logoText": "MAXGREEN MOBILITY"
   },
   "theme": {
-    "activePreset": "green",
+    "activePreset": "teal",
     "presets": {
       "green": {
         "label": "Maxgreen",
@@ -326,7 +326,7 @@
         },
         {
           "label": "MGT900LMS",
-          "href": "/solutions?product=e-loader"
+          "href": "/solutions?product=product-3"
         }
       ]
     },
