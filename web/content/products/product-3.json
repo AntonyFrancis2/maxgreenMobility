@@ -19,17 +19,17 @@
   "specs": [
     {
       "label": "Specification",
-      "value": "Edit in Solutions → Products"
+      "value": "abcd"
     }
   ],
   "features": [
-    "Edit key features in Admin → Solutions → Products."
+    "abcd"
   ],
   "kpis": [
     {
       "label": "Metric",
-      "value": "—",
-      "subLabel": "Editable KPI",
+      "value": "test",
+      "subLabel": "KPI",
       "tone": "brand"
     }
   ],
