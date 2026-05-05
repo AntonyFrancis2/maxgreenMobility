@@ -327,6 +327,10 @@
         {
           "label": "MGT900LMS",
           "href": "/solutions?product=product-3"
+        },
+        {
+          "label": "MGT900LMS1",
+          "href": "/solutions?product=product-4"
         }
       ]
     },
