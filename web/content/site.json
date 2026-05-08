@@ -9,23 +9,22 @@
         "title": "Call Us",
         "lines": [
           "Mon–Sat: 9:00 AM – 6:00 PM",
-          "+91 123 456 7890",
-          "+91 987 654 3210"
+          "+91 7600108665",
+          "+91 8490018665"
         ]
       },
       {
         "title": "Email Us",
         "lines": [
           "General: info@maxgreenmobility.com",
-          "Sales: sales@maxgreenmobility.com",
-          "Support: support@maxgreenmobility.com"
+          "Sales: dhaivat@maxgreentractors.com",
+          "Support:contact@maxgreentractors.com"
         ]
       },
       {
         "title": "Business Hours",
         "lines": [
-          "Monday – Friday: 9:00 AM – 7:00 PM",
-          "Saturday: 10:00 AM – 5:00 PM",
+          "Monday – Saturday: 9:00 AM – 6:00 PM",
           "Sunday: Closed"
         ]
       }
@@ -101,8 +100,8 @@
     }
   ],
   "topRight": {
-    "phoneLabel": "+91 123 456 7890",
-    "phoneValue": "+911234567890"
+    "phoneLabel": "+91 7600108665",
+    "phoneValue": "+917600108665"
   },
   "brand": {
     "name": "Maxgreen Mobility",
@@ -286,26 +285,26 @@
     "contact": [
       {
         "label": "Phone",
-        "value": "+91 123 456 7890",
-        "href": "tel:+911234567890"
+        "value": "+91 7600108665",
+        "href": "tel:+917600108665"
       },
       {
         "label": "Email",
-        "value": "info@maxgreenmobility.com",
-        "href": "mailto:info@maxgreenmobility.com"
+        "value": "contact@maxgreentractors.com",
+        "href": "mailto:contact@maxgreentractors.com"
       }
     ],
     "officeAddress": [
-      "123, Green Park, Sector 10",
-      "Bengaluru, Karnataka 560001",
+      "Plot - 9, Shayona silver estate, part- 2, Near KCT laboratory, Gota",
+      "Ahmedabad, Gujarat - 382481",
       "India"
     ],
     "copyright": "© 2026 Maxgreen Mobility. All rights reserved."
   },
   "home": {
     "hero": {
-      "headline": "Future is Green Mobility Max mobility max",
-      "subheadline": "Sustainable electric vehicles for modern businesses. Reduce costs, cut emissions, and scale operations with Maxgreen.",
+      "headline": "Maxgreen EV Trolley — Smarter Moves, Bigger Savings. ⚡",
+      "subheadline": "Zero fuel costs, zero maintenance, and powerful performance — effortlessly move up to 900 kg while saving ₹15,000+ every month with Maxgreen EV Trolley.",
       "primaryCta": {
         "label": "Explore Solutions",
         "href": "/solutions"

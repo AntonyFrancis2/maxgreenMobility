@@ -1,0 +1,42 @@
+{
+  "id": "product-6",
+  "name": "MGT1000",
+  "tagline": "Add a short tagline in Admin → Solutions → Products.",
+  "media": {
+    "mainImage": "/media/maxgreen1.jpeg",
+    "demoVideo": {
+      "kind": "youtube",
+      "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    },
+    "views": [
+      {
+        "id": "v1",
+        "label": "View 1",
+        "image": "/media/products/e-loader.svg"
+      }
+    ]
+  },
+  "specs": [
+    {
+      "label": "Specification",
+      "value": "Edit in Solutions → Products"
+    }
+  ],
+  "features": [
+    "Edit key features in Admin → Solutions → Products."
+  ],
+  "kpis": [
+    {
+      "label": "Metric",
+      "value": "—",
+      "subLabel": "Editable KPI",
+      "tone": "brand"
+    }
+  ],
+  "cta": {
+    "title": "Interested in MGT1000?",
+    "subtitle": "Get in touch for a demo or quote.",
+    "primary": "Request a Quote",
+    "secondary": "Schedule Demo"
+  }
+}
