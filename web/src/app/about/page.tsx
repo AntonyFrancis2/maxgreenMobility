@@ -80,8 +80,18 @@ export default async function AboutPage() {
           <h2 className="text-center text-2xl font-extrabold tracking-tight">{about.leadership.quoteTitle}</h2>
           <div className="mt-8 grid gap-6 rounded-[var(--radius-lg)] border border-border bg-white p-6 md:grid-cols-3">
             <div className="flex flex-col items-center gap-4 rounded-[var(--radius-lg)] bg-[#eef6ff] p-6 text-center">
-              <div className="relative h-28 w-28 overflow-hidden rounded-full bg-white ring-1 ring-border">
-                <Image src={about.leadership.image} alt={about.leadership.name} fill />
+              <div className="w-full">
+                <div className="rounded-[var(--radius-lg)] bg-white/0 p-[10%]">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[var(--radius-lg)] bg-white ring-1 ring-border">
+                    <Image
+                      src={about.leadership.image}
+                      alt={about.leadership.name}
+                      fill
+                      sizes="(min-width: 768px) 260px, 80vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
               </div>
               <div>
                 <div className="text-sm font-extrabold">{about.leadership.name}</div>
