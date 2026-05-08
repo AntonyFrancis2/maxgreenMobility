@@ -85,21 +85,23 @@ export default async function Home() {
       </section>
 
       <section className="bg-surface py-10">
-        <Container>
-          <div className="text-center">
-            <h2 className="text-xl font-extrabold tracking-tight">{home.trustedBy.title}</h2>
-          </div>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            {home.trustedBy.items.map((t: string) => (
-              <div
-                key={t}
-                className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-foreground ring-1 ring-border"
-              >
-                {t}
-              </div>
-            ))}
-          </div>
-        </Container>
+        {home.trustedBy?.items?.length ? (
+          <Container>
+            <div className="text-center">
+              <h2 className="text-xl font-extrabold tracking-tight">{home.trustedBy.title}</h2>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              {home.trustedBy.items.map((t: string) => (
+                <div
+                  key={t}
+                  className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-foreground ring-1 ring-border"
+                >
+                  {t}
+                </div>
+              ))}
+            </div>
+          </Container>
+        ) : null}
       </section>
 
       <section className="py-10">
@@ -157,7 +159,7 @@ export default async function Home() {
 
           <div className="mx-auto mt-8 max-w-4xl rounded-[var(--radius-lg)] bg-white p-6 text-foreground shadow-lg" id="message">
             <MailtoForm
-              toEmail="info@maxgreenmobility.com"
+              toEmail="antonyfrancis2604@gmail.com"
               subjectPrefix="Website inquiry"
               submitLabel="Submit Inquiry"
               footerHint="We respond to inquiries within 24 hours during business days."

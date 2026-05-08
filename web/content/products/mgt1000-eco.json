@@ -1,0 +1,107 @@
+{
+  "id": "mgt1000-eco",
+  "name": "MGT1000-ECO",
+  "tagline": "Cost-optimized platform trolley for industrial movement",
+  "media": {
+    "mainImage": "/media/products/electric-scooter.svg",
+    "demoVideo": {
+      "kind": "youtube",
+      "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    },
+    "views": [
+      {
+        "id": "v1",
+        "label": "Front",
+        "image": "/media/products/electric-scooter.svg"
+      },
+      {
+        "id": "v2",
+        "label": "Side",
+        "image": "/media/products/electric-scooter.svg"
+      },
+      {
+        "id": "v3",
+        "label": "Rear",
+        "image": "/media/products/electric-scooter.svg"
+      },
+      {
+        "id": "v4",
+        "label": "Top",
+        "image": "/media/products/electric-scooter.svg"
+      }
+    ]
+  },
+  "specs": [
+    {
+      "label": "Overall Dimensions",
+      "value": "6 ft length × 3 ft width"
+    },
+    {
+      "label": "Motor Power",
+      "value": "Robust BLDC Motor"
+    },
+    {
+      "label": "Battery",
+      "value": "Lithium Ion - NMC (1 year warranty)"
+    },
+    {
+      "label": "Range",
+      "value": "3 hours / 20 kms per charge"
+    },
+    {
+      "label": "Top Speed",
+      "value": "5 to 25 km/h (controllable as per requirement)"
+    },
+    {
+      "label": "Cargo Capacity",
+      "value": "1000 kgs"
+    },
+    {
+      "label": "Charging Time",
+      "value": "6 hours (Standard Charger)"
+    }
+  ],
+  "features": [
+    "Powerful electric performance",
+    "Collapsible steering handle",
+    "Heavy-duty load carrying capacity",
+    "Zero fuel cost operation — save ₹28,000+ every month per trolley",
+    "Low maintenance design",
+    "Silent & eco-friendly running",
+    "Smooth driving & easy handling",
+    "Fast & efficient charging",
+    "Ideal for factories, warehouses & campuses",
+    "Durable suspension for rough internal roads"
+  ],
+  "kpis": [
+    {
+      "label": "Maintenance",
+      "value": "Zero",
+      "subLabel": "low upkeep",
+      "tone": "brand"
+    },
+    {
+      "label": "Savings",
+      "value": "₹28,000+",
+      "subLabel": "per month / trolley",
+      "tone": "blue"
+    },
+    {
+      "label": "Battery warranty",
+      "value": "1 year",
+      "tone": "purple"
+    },
+    {
+      "label": "ROI",
+      "value": "4–5 months",
+      "subLabel": "typical payback",
+      "tone": "orange"
+    }
+  ],
+  "cta": {
+    "title": "Interested in MGT1000-ECO?",
+    "subtitle": "Get in touch with our team to schedule a demo, request a quote, or discuss your specific requirements.",
+    "primary": "Request a Quote",
+    "secondary": "Schedule Demo"
+  }
+}

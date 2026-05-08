@@ -216,20 +216,16 @@
     },
     "stats": [
       {
-        "value": "15+",
-        "label": "Years Experience"
+        "value": "60+",
+        "label": "Years of group experience"
       },
       {
-        "value": "50,000+",
-        "label": "Vehicles Deployed"
-      },
-      {
-        "value": "500+",
-        "label": "Enterprise Clients"
+        "value": "200+",
+        "label": "Dealers PAN India"
       },
       {
         "value": "25+",
-        "label": "Cities Covered"
+        "label": "Cities covered"
       }
     ],
     "leadership": {
@@ -237,9 +233,11 @@
       "title": "Founder & Managing Director",
       "quoteTitle": "Leadership Message",
       "message": [
-        "When I founded Maxgreen Mobility in 2011, the vision was simple yet ambitious: to make electric vehicles the preferred choice for India’s businesses.",
-        "Our journey has been driven by three core principles: innovation, reliability, and customer satisfaction.",
-        "As we look ahead, our commitment remains unwavering: to continue investing in R&D, expand our network, and make green mobility accessible to every business in India."
+        "At Maxgreen, our vision is simple — to build practical, innovative, and sustainable machines that create real value for people and industries across India.",
+        "What started as a mission to support Indian farmers through electric mobility has now expanded into creating efficient EV solutions for industries, material handling, campuses, and commercial applications. We believe the future belongs to technology that is economical, reliable, and environmentally responsible.",
+        "Our focus has always been on understanding ground-level challenges and developing products that genuinely improve productivity while reducing operating costs. Every Maxgreen product is designed with durability, performance, and long-term value in mind.",
+        "We are committed to continuous innovation, strong customer relationships, and delivering dependable after-sales support. As we grow, our purpose remains unchanged — building machines that empower businesses, industries, and communities.",
+        "Thank you for being a part of the Maxgreen journey."
       ],
       "image": "/media/leadership.svg"
     },
@@ -322,12 +320,16 @@
       "subtitle": "Explore our range of electric vehicles designed for your business needs.",
       "items": [
         {
-          "label": "E-Loader",
-          "href": "/solutions?product=e-loader"
+          "label": "MGT1000-ECO",
+          "href": "/solutions?product=mgt1000-eco"
         },
         {
-          "label": "test2",
-          "href": "/solutions?product=product-1"
+          "label": "MGT1000",
+          "href": "/solutions?product=mgt1000"
+        },
+        {
+          "label": "MGT600S",
+          "href": "/solutions?product=mgt600s"
         }
       ]
     },
@@ -335,39 +337,46 @@
       "title": "Why Choose Maxgreen",
       "items": [
         {
-          "title": "Long Battery Life",
-          "subtitle": "Up to 80–100 km per charge."
+          "title": "Battery",
+          "subtitle": "Up to 3 years warranty & long life"
         },
         {
-          "title": "Fast Charging",
-          "subtitle": "Quick top-ups for busy fleets."
+          "title": "Save Fuel & Operating Costs",
+          "subtitle": "Upwards of ₹28,000/- per month savings per trolley"
         },
         {
-          "title": "Cost Effective",
-          "subtitle": "Lower operating costs vs fuel."
+          "title": "Customizable",
+          "subtitle": "Models can be customized as per customer’s need"
+        },
+        {
+          "title": "Heavy-Duty & Reliable Performance",
+          "subtitle": "Strong chassis, powerful load carrying capability, and dependable performance for continuous industrial use."
+        },
+        {
+          "title": "Low Maintenance, High Uptime",
+          "subtitle": "Fewer moving parts compared to diesel vehicles means less breakdowns and more productivity."
+        },
+        {
+          "title": "Direct Manufacturer Support",
+          "subtitle": "Backed by Maxgreen’s manufacturing expertise, fast service support, customization options, and trusted after-sales assistance since 1964."
         }
-      ]
-    },
-    "trustedBy": {
-      "title": "Trusted by Industry Leaders",
-      "items": [
-        "Amazon India",
-        "Flipkart",
-        "Zomato",
-        "Swiggy",
-        "Myntra",
-        "Delhivery"
       ]
     },
     "industries": {
       "title": "Industries We Serve",
       "items": [
-        "E-Commerce",
-        "Food & Beverage",
-        "Manufacturing",
-        "Logistics",
-        "Agriculture",
-        "Tourism"
+        "Resorts & Banquet halls",
+        "Warehouses & Logistics",
+        "Steel & Fabrication units",
+        "Auto components (ACMA)",
+        "Pharma plants",
+        "Textile & Garment",
+        "Dairy & Agriculture",
+        "FMCG Distribution",
+        "Construction sites",
+        "Hospitals & Healthcare",
+        "Campuses & Institutions",
+        "Hotels & Airports"
       ]
     },
     "savings": {
@@ -403,16 +412,56 @@
       "title": "Frequently Asked Questions",
       "items": [
         {
-          "q": "What is the charging time?",
-          "a": "Typical charging takes 6–8 hours depending on model and battery capacity."
+          "q": "What is the load carrying capacity of the EV trolley?",
+          "a": "The load capacity of MGT1000 is 1000 kgs. Our EV trolleys are available in multiple load capacities depending on industrial requirements and applications."
         },
         {
-          "q": "What is the warranty period?",
-          "a": "Battery warranty is typically 1 year (varies by model)."
+          "q": "What is the running range on a single charge?",
+          "a": "The range depends on battery configuration, load, and operating conditions. Typical running range is 35 kms for the MGT1000 model."
+        },
+        {
+          "q": "How long does charging take?",
+          "a": "Charging time varies by battery type and capacity, generally between 4–8 hours. Fast charging charges the battery 100% in about 2.5 hours."
+        },
+        {
+          "q": "Can the trolley be customized?",
+          "a": "Yes. We provide customization options for load body, dimensions, seating, battery capacity, branding, and application-specific requirements."
+        },
+        {
+          "q": "What industries can use Maxgreen EV Trolleys?",
+          "a": "Factories, warehouses, resorts, hotels, hospitals, universities, airports, industrial plants, townships, and logistics facilities."
+        },
+        {
+          "q": "Is the trolley suitable for indoor factory use?",
+          "a": "Yes. Since it is electric, silent, and emission-free, it is ideal for indoor operations."
+        },
+        {
+          "q": "What maintenance is required?",
+          "a": "Very minimal maintenance compared to petrol / diesel vehicles. Regular battery care and periodic inspections are generally sufficient."
+        },
+        {
+          "q": "What is the battery life?",
+          "a": "Battery life depends on usage patterns and maintenance, but our systems are designed for long operational durability. The battery warranty of the MGT1000 model is 3 years."
         },
         {
           "q": "Do you provide after-sales service?",
-          "a": "Yes. We offer service support and spare parts assistance."
+          "a": "Yes. Maxgreen provides dedicated service support, spare parts assistance, and technical guidance."
+        },
+        {
+          "q": "Is driver training required?",
+          "a": "The trolley is simple to operate, and basic operational guidance is sufficient for most users."
+        },
+        {
+          "q": "How much cost can industries save by switching to EV trolleys?",
+          "a": "Businesses can save significantly upwards of ₹20,000/- every month on fuel, maintenance, labour and operating expenses compared to conventional material handling vehicles."
+        },
+        {
+          "q": "Do EV trolleys require registration or RTO approval?",
+          "a": "Low-speed industrial-use EV trolleys used within private premises do not require registration."
+        },
+        {
+          "q": "Can the trolley operate on slopes and rough industrial roads?",
+          "a": "Yes. Our trolleys are designed for industrial environments and can handle typical factory and campus road conditions including slopes and rough roads."
         }
       ]
     },

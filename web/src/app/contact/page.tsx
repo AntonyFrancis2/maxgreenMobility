@@ -94,7 +94,7 @@ export default async function ContactPage() {
 
           <div className="mx-auto mt-8 max-w-4xl rounded-[var(--radius-lg)] bg-white p-6 text-foreground shadow-lg">
             <MailtoForm
-              toEmail="info@maxgreenmobility.com"
+              toEmail="antonyfrancis2604@gmail.com"
               subjectPrefix="Website inquiry"
               submitLabel="Send Message"
               footerHint="By submitting this form, you agree to our privacy policy and terms of service."

@@ -1,0 +1,110 @@
+{
+  "id": "mgt1000",
+  "name": "MGT1000",
+  "tagline": "Heavy-duty platform trolley for industrial material handling",
+  "media": {
+    "mainImage": "/media/products/electric-cart.svg",
+    "demoVideo": {
+      "kind": "youtube",
+      "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    },
+    "views": [
+      {
+        "id": "v1",
+        "label": "Front",
+        "image": "/media/products/electric-cart.svg"
+      },
+      {
+        "id": "v2",
+        "label": "Side",
+        "image": "/media/products/electric-cart.svg"
+      },
+      {
+        "id": "v3",
+        "label": "Rear",
+        "image": "/media/products/electric-cart.svg"
+      },
+      {
+        "id": "v4",
+        "label": "Top",
+        "image": "/media/products/electric-cart.svg"
+      }
+    ]
+  },
+  "specs": [
+    {
+      "label": "Overall Dimensions",
+      "value": "8 ft length × 4 ft width (or 6 ft length × 3 ft width)"
+    },
+    {
+      "label": "Motor Power",
+      "value": "Robust BLDC Motor"
+    },
+    {
+      "label": "Battery",
+      "value": "LFP (3 years warranty)"
+    },
+    {
+      "label": "Range",
+      "value": "4 hours / 35 kms per charge"
+    },
+    {
+      "label": "Top Speed",
+      "value": "5 to 25 km/h (controllable as per requirement)"
+    },
+    {
+      "label": "Cargo Capacity",
+      "value": "1000 kgs"
+    },
+    {
+      "label": "Charging Time",
+      "value": "2.5 hours (Fast Charger) / 6 hours (Standard Charger)"
+    }
+  ],
+  "features": [
+    "Powerful electric performance",
+    "Fog lamps + side indicators",
+    "Foldable side railings",
+    "Collapsible steering handle",
+    "Heavy-duty load carrying capacity",
+    "Zero fuel cost operation — save ₹28,000+ every month per trolley",
+    "Low maintenance design",
+    "Silent & eco-friendly running",
+    "Strong industrial-grade chassis",
+    "Smooth driving & easy handling",
+    "Fast & efficient charging",
+    "Ideal for factories, warehouses & campuses",
+    "Durable suspension for rough internal roads"
+  ],
+  "kpis": [
+    {
+      "label": "Maintenance",
+      "value": "Zero",
+      "subLabel": "low upkeep",
+      "tone": "brand"
+    },
+    {
+      "label": "Savings",
+      "value": "₹28,000+",
+      "subLabel": "per month / trolley",
+      "tone": "blue"
+    },
+    {
+      "label": "Battery warranty",
+      "value": "3 years",
+      "tone": "purple"
+    },
+    {
+      "label": "ROI",
+      "value": "4–5 months",
+      "subLabel": "typical payback",
+      "tone": "orange"
+    }
+  ],
+  "cta": {
+    "title": "Interested in MGT1000?",
+    "subtitle": "Get in touch with our team to schedule a demo, request a quote, or discuss your specific requirements.",
+    "primary": "Request a Quote",
+    "secondary": "Schedule Demo"
+  }
+}
