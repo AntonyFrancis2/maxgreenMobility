@@ -382,28 +382,76 @@
       "title": "Cost Savings by Industry",
       "items": [
         {
-          "title": "E-Commerce",
-          "subtitle": "Monthly savings",
-          "value": "₹45,000",
-          "note": "Average fleet: 10 vehicles"
+          "title": "Banquet halls",
+          "subtitle": "Saving / day",
+          "value": "₹3,500/day",
+          "note": "Payback: 28 days • Workers replaced: 10–15"
         },
         {
-          "title": "Food Delivery",
-          "subtitle": "Monthly savings",
-          "value": "₹36,000",
-          "note": "Average fleet: 8 vehicles"
+          "title": "Warehouses & Logistics",
+          "subtitle": "Saving / day",
+          "value": "₹4,100/day",
+          "note": "Payback: 23 days • Workers replaced: 8–12"
         },
         {
-          "title": "Manufacturing",
-          "subtitle": "Monthly savings",
-          "value": "₹52,000",
-          "note": "Average fleet: 12 vehicles"
+          "title": "Steel & Metal Fabrication",
+          "subtitle": "Saving / day",
+          "value": "₹5,200/day",
+          "note": "Payback: 18 days • Workers replaced: 10–16"
         },
         {
-          "title": "Tourism",
-          "subtitle": "Monthly savings",
-          "value": "₹35,000",
-          "note": "Average fleet: 7 vehicles"
+          "title": "Auto Components (ACMA)",
+          "subtitle": "Saving / day",
+          "value": "₹4,800/day",
+          "note": "Payback: 20 days • Workers replaced: 8–14"
+        },
+        {
+          "title": "Pharma plants",
+          "subtitle": "Saving / day",
+          "value": "₹3,200/day",
+          "note": "Payback: 30 days • Workers replaced: 5–8"
+        },
+        {
+          "title": "Textile & Garment",
+          "subtitle": "Saving / day",
+          "value": "₹3,100/day",
+          "note": "Payback: 31 days • Workers replaced: 7–11"
+        },
+        {
+          "title": "Dairy & Agriculture",
+          "subtitle": "Saving / day",
+          "value": "₹3,300/day",
+          "note": "Payback: 29 days • Workers replaced: 6–10"
+        },
+        {
+          "title": "FMCG Distribution",
+          "subtitle": "Saving / day",
+          "value": "₹5,000/day",
+          "note": "Payback: 19 days • Workers replaced: 9–14"
+        },
+        {
+          "title": "Construction sites",
+          "subtitle": "Saving / day",
+          "value": "₹7,000/day",
+          "note": "Payback: 20 days • Workers replaced: 8–14"
+        },
+        {
+          "title": "Hospitals & Healthcare",
+          "subtitle": "Saving / day",
+          "value": "₹3,800/day",
+          "note": "Payback: 25 days • Workers replaced: 7–12"
+        },
+        {
+          "title": "Campuses & Institutions",
+          "subtitle": "Saving / day",
+          "value": "₹3,300/day",
+          "note": "Payback: 29 days • Workers replaced: 5–9"
+        },
+        {
+          "title": "Hotels & Airports",
+          "subtitle": "Saving / day",
+          "value": "₹3,000/day",
+          "note": "Payback: 32 days • Workers replaced: 5–8"
         }
       ]
     },
