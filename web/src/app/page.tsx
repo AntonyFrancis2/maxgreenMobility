@@ -129,10 +129,13 @@ export default async function Home() {
           </div>
           <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {home.savings.items.map((s) => (
-              <div key={s.title} className={`rounded-[var(--radius-lg)] border border-border bg-white p-5 ${stack}`}>
-                <div className="text-xs font-semibold text-muted">{s.title}</div>
+              <div
+                key={s.title}
+                className={`rounded-[var(--radius-lg)] border border-border bg-gradient-to-br from-brand/10 via-white to-accent/5 p-5 ${stack}`}
+              >
+                <div className="text-xs font-semibold text-foreground/80">{s.title}</div>
                 <div className="mt-2 text-2xl font-extrabold text-brand">{s.value}</div>
-                <div className="mt-1 text-xs text-muted">{s.note}</div>
+                <div className="mt-1 text-[11px] font-semibold text-foreground/70">{s.note}</div>
               </div>
             ))}
           </div>

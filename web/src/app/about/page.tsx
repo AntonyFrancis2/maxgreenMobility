@@ -65,13 +65,18 @@ export default async function AboutPage() {
       </section>
 
       <section className="pb-12">
-        <Container className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {about.stats.map((s) => (
-            <div key={s.label} className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${cardStats}`}>
-              <div className="text-2xl font-extrabold text-brand">{s.value}</div>
-              <div className="mt-1 text-xs font-semibold text-muted">{s.label}</div>
-            </div>
-          ))}
+        <Container>
+          <div className="flex flex-wrap justify-center gap-4">
+            {about.stats.map((s) => (
+              <div
+                key={s.label}
+                className={`w-full max-w-[280px] rounded-[var(--radius-lg)] border border-border bg-surface p-6 text-center ${cardStats}`}
+              >
+                <div className="text-2xl font-extrabold text-brand">{s.value}</div>
+                <div className="mt-1 text-xs font-semibold text-muted">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </Container>
       </section>
 
