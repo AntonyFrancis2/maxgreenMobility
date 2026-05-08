@@ -321,16 +321,16 @@
       "subtitle": "Explore our range of electric vehicles designed for your business needs.",
       "items": [
         {
-          "label": "MGT900LM",
-          "href": "/solutions?product=e-loader"
+          "label": "MGT1000-ECO",
+          "href": "/solutions?product=product-5"
         },
         {
-          "label": "MGT900LMS",
-          "href": "/solutions?product=product-3"
+          "label": "MGT1000",
+          "href": "/solutions?product=product-6"
         },
         {
-          "label": "MGT900LMS1",
-          "href": "/solutions?product=product-4"
+          "label": "MGT600S",
+          "href": "/solutions?product=product-7"
         }
       ]
     },
