@@ -48,6 +48,8 @@ export type SiteConfig = {
 
 export type HomeContent = {
   hero: {
+    /** Full-width hero photo behind headline (optional; omit for solid brand color only). */
+    backgroundImage?: string;
     headline: string;
     subheadline: string;
     primaryCta: { label: string; href: string };

@@ -3,7 +3,7 @@
   "name": "MGT600S",
   "tagline": "Compact platform trolley for efficient internal logistics",
   "media": {
-    "mainImage": "/media/products/electric-rickshaw.svg",
+    "mainImage": "/media/products/mgt600s.png",
     "demoVideo": {
       "kind": "youtube",
       "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -11,23 +11,8 @@
     "views": [
       {
         "id": "v1",
-        "label": "Front",
-        "image": "/media/products/electric-rickshaw.svg"
-      },
-      {
-        "id": "v2",
-        "label": "Side",
-        "image": "/media/products/electric-rickshaw.svg"
-      },
-      {
-        "id": "v3",
-        "label": "Rear",
-        "image": "/media/products/electric-rickshaw.svg"
-      },
-      {
-        "id": "v4",
-        "label": "Top",
-        "image": "/media/products/electric-rickshaw.svg"
+        "label": "Product",
+        "image": "/media/products/mgt600s.png"
       }
     ]
   },

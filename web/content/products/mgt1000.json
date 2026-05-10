@@ -3,7 +3,7 @@
   "name": "MGT1000",
   "tagline": "Heavy-duty platform trolley for industrial material handling",
   "media": {
-    "mainImage": "/media/products/electric-cart.svg",
+    "mainImage": "/media/products/mgt1000-hd.png",
     "demoVideo": {
       "kind": "youtube",
       "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -11,23 +11,8 @@
     "views": [
       {
         "id": "v1",
-        "label": "Front",
-        "image": "/media/products/electric-cart.svg"
-      },
-      {
-        "id": "v2",
-        "label": "Side",
-        "image": "/media/products/electric-cart.svg"
-      },
-      {
-        "id": "v3",
-        "label": "Rear",
-        "image": "/media/products/electric-cart.svg"
-      },
-      {
-        "id": "v4",
-        "label": "Top",
-        "image": "/media/products/electric-cart.svg"
+        "label": "Product",
+        "image": "/media/products/mgt1000-hd.png"
       }
     ]
   },

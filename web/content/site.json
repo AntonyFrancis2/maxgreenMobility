@@ -303,6 +303,7 @@
   },
   "home": {
     "hero": {
+      "backgroundImage": "/media/hero-image.png",
       "headline": "Maxgreen EV Trolley — Smarter Moves, Bigger Savings. ⚡",
       "subheadline": "Zero fuel costs, zero maintenance, and powerful performance — effortlessly move up to 900 kg while saving ₹15,000+ every month with Maxgreen EV Trolley.",
       "primaryCta": {
@@ -319,7 +320,7 @@
       "subtitle": "Explore our range of electric vehicles designed for your business needs.",
       "items": [
         {
-          "label": "MGT1000-ECO",
+          "label": "MGT1000-eco",
           "href": "/solutions?product=mgt1000-eco"
         },
         {

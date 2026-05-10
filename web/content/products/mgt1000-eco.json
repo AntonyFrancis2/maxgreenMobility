@@ -1,9 +1,9 @@
 {
   "id": "mgt1000-eco",
-  "name": "MGT1000-ECO",
+  "name": "MGT1000-eco",
   "tagline": "Cost-optimized platform trolley for industrial movement",
   "media": {
-    "mainImage": "/media/products/electric-scooter.svg",
+    "mainImage": "/media/products/mgt1000-eco.png",
     "demoVideo": {
       "kind": "youtube",
       "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -11,23 +11,8 @@
     "views": [
       {
         "id": "v1",
-        "label": "Front",
-        "image": "/media/products/electric-scooter.svg"
-      },
-      {
-        "id": "v2",
-        "label": "Side",
-        "image": "/media/products/electric-scooter.svg"
-      },
-      {
-        "id": "v3",
-        "label": "Rear",
-        "image": "/media/products/electric-scooter.svg"
-      },
-      {
-        "id": "v4",
-        "label": "Top",
-        "image": "/media/products/electric-scooter.svg"
+        "label": "Product",
+        "image": "/media/products/mgt1000-eco.png"
       }
     ]
   },
@@ -99,7 +84,7 @@
     }
   ],
   "cta": {
-    "title": "Interested in MGT1000-ECO?",
+    "title": "Interested in MGT1000-eco?",
     "subtitle": "Get in touch with our team to schedule a demo, request a quote, or discuss your specific requirements.",
     "primary": "Request a Quote",
     "secondary": "Schedule Demo"
