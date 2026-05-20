@@ -16,9 +16,8 @@
       {
         "title": "Email Us",
         "lines": [
-          "General: info@maxgreenmobility.com",
-          "Sales: dhaivat@maxgreentractors.com",
-          "Support:contact@maxgreentractors.com"
+          "General: contact@maxgreenmobility.com",
+          "Sales: dhaivat@maxgreentractors.com"
         ]
       },
       {
@@ -35,21 +34,18 @@
         {
           "title": "Corporate Office",
           "lines": [
-            "Maxgreen Mobility Pvt. Ltd.",
-            "123, MG Road, Bengaluru",
-            "Karnataka, India 560001"
+            "Plot 9, Shayona Silver Estate Part 2, BH Silver Oak Engineering College, Ahmedabad, Gujarat 382481"
           ],
-          "email": "corporate@maxgreenmobility.com",
-          "phone": "+91 123 456 7890"
+          "email": "contact@maxgreentractors.com",
+          "phone": "+91 7600108665"
         },
         {
           "title": "Manufacturing Unit",
           "lines": [
-            "Plot No. 45, MIDC Industrial Area",
-            "Pune, Maharashtra, India 411019"
+            "Survey no. 179/2, Nr, Samarika Pharma Solution LLP, Chatral, Gandhinagar, Gujarat."
           ],
-          "email": "factory@maxgreenmobility.com",
-          "phone": "+91 987 654 3210"
+          "email": "contact@maxgreentractors.com",
+          "phone": "+91 8401318665"
         }
       ]
     },
@@ -64,7 +60,7 @@
           "title": "WhatsApp Business",
           "subtitle": "Chat with us directly",
           "actionLabel": "Message Us",
-          "href": "https://wa.me/911234567890"
+          "href": "https://wa.me/917600108665"
         },
         {
           "title": "Schedule a Visit",
@@ -112,7 +108,7 @@
     "logoText": "MAXGREEN MOBILITY"
   },
   "theme": {
-    "activePreset": "teal",
+    "activePreset": "greenSubtle",
     "presets": {
       "green": {
         "label": "Maxgreen",
