@@ -5,9 +5,10 @@ import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { AdminField } from "@/components/AdminField";
 import { AdminObjectList, AdminStringList } from "@/components/AdminList";
-import type { Product, SiteConfig, ThemePresetId } from "@/lib/site";
+import { RichTextEditor } from "@/components/RichTextEditor";
+import type { BlogPost, Product, SiteConfig, ThemePresetId } from "@/lib/site";
 
-type TabId = "brandNavFooter" | "home" | "about" | "solutionsProducts" | "contact" | "theme";
+type TabId = "brandNavFooter" | "home" | "about" | "solutionsProducts" | "contact" | "theme" | "blog";
 
 function deepClone<T>(v: T): T {
   return JSON.parse(JSON.stringify(v)) as T;
@@ -21,6 +22,11 @@ export default function AdminEditPage() {
   const [products, setProducts] = useState<{ filename: string; json: Product | null }[]>([]);
   const [activeProductFile, setActiveProductFile] = useState<string>("");
   const [productSaving, setProductSaving] = useState(false);
+
+  // Blog state
+  const [blogPosts, setBlogPosts] = useState<{ filename: string; json: BlogPost | null }[]>([]);
+  const [activeBlogSlug, setActiveBlogSlug] = useState<string>("");
+  const [blogSaving, setBlogSaving] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -37,6 +43,13 @@ export default function AdminEditPage() {
         const p = (await pres.json()) as { files: { filename: string; json: Product | null }[] };
         setProducts(p.files);
         setActiveProductFile(p.files.find((f) => f.filename.endsWith(".json"))?.filename ?? "");
+      }
+
+      // Fetch blog posts
+      const bres = await fetch("/api/admin/blog");
+      if (bres.ok) {
+        const b = (await bres.json()) as { files: { filename: string; json: BlogPost | null }[] };
+        setBlogPosts(b.files);
       }
     })();
   }, []);
@@ -133,6 +146,7 @@ export default function AdminEditPage() {
                   ["about", "About"],
                   ["solutionsProducts", "Solutions (Products)"],
                   ["contact", "Contact"],
+                  ["blog", "📝 Blog"],
                   ["theme", "Theme"],
                 ] as const
               ).map(([id, label]) => (
@@ -905,6 +919,320 @@ export default function AdminEditPage() {
                       { key: "href", label: "Href" },
                     ]}
                   />
+                </>
+              ) : null}
+
+              {tab === "blog" ? (
+                <>
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm font-extrabold">Blog Posts</div>
+                    <button
+                      type="button"
+                      className="rounded-xl bg-brand px-3 py-1.5 text-xs font-bold text-white hover:opacity-90 transition-opacity"
+                      onClick={() => {
+                        const now = new Date().toISOString();
+                        const slug = `new-post-${Date.now()}`;
+                        const newPost: BlogPost = {
+                          slug,
+                          title: "New Blog Post",
+                          excerpt: "",
+                          body: "<p>Start writing your blog post here...</p>",
+                          author: "Maxgreen Team",
+                          coverImage: "",
+                          tags: [],
+                          status: "draft",
+                          publishedAt: now,
+                          updatedAt: now,
+                          seo: { title: "", description: "", keywords: [] },
+                        };
+                        const filename = `${slug}.json`;
+                        setBlogPosts((prev) => [...prev, { filename, json: newPost }]);
+                        setActiveBlogSlug(slug);
+                      }}
+                    >
+                      + New Post
+                    </button>
+                  </div>
+
+                  {/* Post list */}
+                  <div className="space-y-1">
+                    {blogPosts.map((bp) => {
+                      const p = bp.json;
+                      if (!p) return null;
+                      const isActive = p.slug === activeBlogSlug;
+                      return (
+                        <button
+                          key={bp.filename}
+                          type="button"
+                          onClick={() => setActiveBlogSlug(p.slug)}
+                          className={`w-full rounded-xl px-3 py-2 text-left text-sm transition-colors ${
+                            isActive
+                              ? "bg-brand/10 text-brand font-semibold"
+                              : "hover:bg-white/80 text-foreground/80"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="truncate">{p.title}</span>
+                            <span
+                              className={`ml-2 shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                                p.status === "published"
+                                  ? "bg-green-100 text-green-700"
+                                  : "bg-amber-100 text-amber-700"
+                              }`}
+                            >
+                              {p.status === "published" ? "Published" : "Draft"}
+                            </span>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Edit selected post */}
+                  {(() => {
+                    const entry = blogPosts.find((bp) => bp.json?.slug === activeBlogSlug);
+                    const post = entry?.json;
+                    if (!entry || !post) {
+                      return (
+                        <div className="py-8 text-center text-sm text-muted">
+                          {blogPosts.length === 0
+                            ? 'Click "+ New Post" to create your first blog post.'
+                            : "Select a post to edit."}
+                        </div>
+                      );
+                    }
+
+                    const updatePost = (next: BlogPost) =>
+                      setBlogPosts((arr) =>
+                        arr.map((x) =>
+                          x.filename === entry.filename ? { ...x, json: next } : x
+                        )
+                      );
+
+                    return (
+                      <>
+                        <div className="border-t border-border pt-4 mt-2">
+                          <div className="text-sm font-extrabold">Post Details</div>
+                        </div>
+
+                        <AdminField
+                          label="Title"
+                          value={post.title}
+                          onChange={(v) => {
+                            const newSlug = v
+                              .toLowerCase()
+                              .replace(/[^a-z0-9\s-]/g, "")
+                              .replace(/\s+/g, "-")
+                              .replace(/-+/g, "-")
+                              .replace(/^-|-$/g, "")
+                              || post.slug;
+                            const newFilename = `${newSlug}.json`;
+                            setBlogPosts((arr) =>
+                              arr.map((x) =>
+                                x.filename === entry.filename
+                                  ? { filename: newFilename, json: { ...post, title: v, slug: newSlug } }
+                                  : x
+                              )
+                            );
+                            setActiveBlogSlug(newSlug);
+                          }}
+                        />
+
+                        <AdminField
+                          label="Slug (URL path)"
+                          value={post.slug}
+                          onChange={(v) => {
+                            const newFilename = `${v}.json`;
+                            setBlogPosts((arr) =>
+                              arr.map((x) =>
+                                x.filename === entry.filename
+                                  ? { filename: newFilename, json: { ...post, slug: v } }
+                                  : x
+                              )
+                            );
+                            setActiveBlogSlug(v);
+                          }}
+                        />
+
+                        <AdminField
+                          label="Excerpt"
+                          textarea
+                          value={post.excerpt}
+                          onChange={(v) => updatePost({ ...post, excerpt: v })}
+                        />
+
+                        <AdminField
+                          label="Author"
+                          value={post.author}
+                          onChange={(v) => updatePost({ ...post, author: v })}
+                        />
+
+                        <AdminField
+                          label="Cover image path (e.g. /media/blog/cover.png)"
+                          value={post.coverImage}
+                          onChange={(v) => updatePost({ ...post, coverImage: v })}
+                        />
+
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-muted">Status</label>
+                          <select
+                            className="w-full rounded-xl border border-border bg-white px-3 py-2 text-sm"
+                            value={post.status}
+                            onChange={(e) =>
+                              updatePost({
+                                ...post,
+                                status: e.target.value as "draft" | "published",
+                              })
+                            }
+                          >
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
+                          </select>
+                        </div>
+
+                        <AdminField
+                          label="Published date"
+                          value={post.publishedAt.slice(0, 10)}
+                          onChange={(v) =>
+                            updatePost({
+                              ...post,
+                              publishedAt: new Date(v).toISOString(),
+                            })
+                          }
+                        />
+
+                        <AdminStringList
+                          label="Tags"
+                          items={post.tags}
+                          onChange={(next) => updatePost({ ...post, tags: next })}
+                        />
+
+                        <div className="border-t border-border pt-4 mt-2">
+                          <div className="text-sm font-extrabold">Content Body</div>
+                          <p className="text-xs text-muted mt-1 mb-3">
+                            Use the toolbar to format your content. Supports bold, italic, headings, lists, links, images, and blockquotes.
+                          </p>
+                        </div>
+
+                        <RichTextEditor
+                          value={post.body}
+                          onChange={(html) => updatePost({ ...post, body: html })}
+                        />
+
+                        <div className="border-t border-border pt-4 mt-2">
+                          <div className="text-sm font-extrabold">SEO Settings</div>
+                        </div>
+
+                        <AdminField
+                          label="SEO Title"
+                          value={post.seo.title}
+                          onChange={(v) =>
+                            updatePost({ ...post, seo: { ...post.seo, title: v } })
+                          }
+                        />
+
+                        <AdminField
+                          label="SEO Description"
+                          textarea
+                          value={post.seo.description}
+                          onChange={(v) =>
+                            updatePost({ ...post, seo: { ...post.seo, description: v } })
+                          }
+                        />
+
+                        <AdminStringList
+                          label="SEO Keywords"
+                          items={post.seo.keywords}
+                          onChange={(next) =>
+                            updatePost({ ...post, seo: { ...post.seo, keywords: next } })
+                          }
+                        />
+
+                        {/* Action buttons */}
+                        <div className="flex gap-2 pt-2">
+                          <button
+                            type="button"
+                            className="flex-1 rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white hover:opacity-90 transition-opacity"
+                            onClick={async () => {
+                              setBlogSaving(true);
+                              setStatus(null);
+                              try {
+                                const res = await fetch("/api/admin/blog", {
+                                  method: "POST",
+                                  headers: { "Content-Type": "application/json" },
+                                  body: JSON.stringify({
+                                    filename: entry.filename,
+                                    json: {
+                                      ...post,
+                                      updatedAt: new Date().toISOString(),
+                                    },
+                                  }),
+                                });
+                                if (!res.ok) {
+                                  setStatus(await res.text());
+                                  return;
+                                }
+                                setStatus(`Saved blog post: ${post.title}`);
+
+                                // Refresh blog list
+                                const bres = await fetch("/api/admin/blog");
+                                if (bres.ok) {
+                                  const b = (await bres.json()) as {
+                                    files: { filename: string; json: BlogPost | null }[];
+                                  };
+                                  setBlogPosts(b.files);
+                                }
+                              } finally {
+                                setBlogSaving(false);
+                              }
+                            }}
+                          >
+                            {blogSaving ? "Saving…" : "Save Post"}
+                          </button>
+
+                          <button
+                            type="button"
+                            className="rounded-xl bg-red-50 px-4 py-2.5 text-sm font-bold text-red-600 ring-1 ring-red-200 hover:bg-red-100 transition-colors"
+                            onClick={async () => {
+                              if (!confirm(`Delete "${post.title}"? This cannot be undone.`)) return;
+                              setStatus(null);
+                              try {
+                                const res = await fetch("/api/admin/blog", {
+                                  method: "DELETE",
+                                  headers: { "Content-Type": "application/json" },
+                                  body: JSON.stringify({ filename: entry.filename }),
+                                });
+                                if (!res.ok) {
+                                  setStatus(await res.text());
+                                  return;
+                                }
+                                setStatus(`Deleted blog post: ${post.title}`);
+                                setBlogPosts((arr) =>
+                                  arr.filter((x) => x.filename !== entry.filename)
+                                );
+                                setActiveBlogSlug("");
+                              } catch {
+                                setStatus("Failed to delete post.");
+                              }
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+
+                        {post.status === "published" && (
+                          <a
+                            href={`/blog/${post.slug}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block text-center text-xs font-semibold text-brand hover:underline"
+                          >
+                            Preview → /blog/{post.slug}
+                          </a>
+                        )}
+                      </>
+                    );
+                  })()}
                 </>
               ) : null}
 

@@ -21,6 +21,32 @@ function toneClasses(tone: Product["kpis"][number]["tone"]) {
   }
 }
 
+function getEmbedUrl(url: string): string {
+  if (!url) return "";
+  if (url.includes("/embed/")) return url;
+  
+  let videoId = "";
+  try {
+    if (url.includes("youtu.be/")) {
+      videoId = url.split("youtu.be/")[1]?.split("?")[0] || "";
+    } else if (url.includes("youtube.com/watch")) {
+      const urlObj = new URL(url);
+      videoId = urlObj.searchParams.get("v") || "";
+    } else if (url.includes("youtube.com/embed/")) {
+      videoId = url.split("youtube.com/embed/")[1]?.split("?")[0] || "";
+    } else {
+      const reg = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+      const match = url.match(reg);
+      if (match) {
+        videoId = match[1];
+      }
+    }
+  } catch {
+    // ignore
+  }
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+}
+
 export function SolutionsClient({ products }: { products: Product[] }) {
   const searchParams = useSearchParams();
   const stackSpecs = siteCardStackClass("start");
@@ -106,6 +132,8 @@ export function SolutionsClient({ products }: { products: Product[] }) {
     );
   }
 
+  const hasVideo = !!product.media.demoVideo?.url;
+
   return (
     <div>
       <section className="bg-brand py-14 text-white">
@@ -187,43 +215,37 @@ export function SolutionsClient({ products }: { products: Product[] }) {
             <div className="mt-1 text-sm font-semibold text-brand">{product.tagline}</div>
           </div>
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-2">
-            <div className="rounded-[var(--radius-lg)] border border-border bg-[#eafff3] p-3 sm:p-4">
-              <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-[var(--radius-lg)] bg-[#eafff3]">
-                <div className="absolute inset-[3%] overflow-hidden rounded-xl">
-                  <Image
-                    src={activeView.image}
-                    alt={`${product.name} image`}
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 400px, 90vw"
-                    className="object-cover object-center"
-                  />
-                </div>
+          <div className={`mt-8 ${hasVideo ? "grid gap-5 lg:grid-cols-2" : "flex justify-center"}`}>
+            <div className={`rounded-[var(--radius-lg)] border border-border bg-[#eafff3] p-3 sm:p-4 w-full h-full flex flex-col justify-center ${hasVideo ? "" : "max-w-md"}`}>
+              <div className={`relative mx-auto w-full overflow-hidden rounded-xl aspect-video ${hasVideo ? "" : "max-w-md"}`}>
+                <Image
+                  src={activeView.image}
+                  alt={`${product.name} image`}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 400px, 90vw"
+                  className="object-cover object-center"
+                />
               </div>
-              {/* <div className="mt-4 text-center text-xs font-semibold text-muted">Product Image</div> */}
             </div>
 
-            <div className="rounded-[var(--radius-lg)] border border-border bg-[#0b2a2e] p-8 text-white">
-              <div className="flex items-center justify-center">
-                {product.media.demoVideo.kind === "youtube" ? (
-                  <div className="w-full overflow-hidden rounded-xl bg-black/40">
-                    <div className="aspect-video w-full">
-                      <iframe
-                        className="h-full w-full"
-                        src={product.media.demoVideo.url}
-                        title="Product Demo Video"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <video className="w-full rounded-xl" controls src={product.media.demoVideo.url} />
-                )}
+            {hasVideo ? (
+              <div className="rounded-[var(--radius-lg)] border border-border bg-[#0b2a2e] p-3 sm:p-4 text-white w-full h-full flex flex-col justify-center">
+                <div className="w-full overflow-hidden rounded-xl bg-black/40 aspect-video">
+                  {product.media.demoVideo.kind === "youtube" ? (
+                    <iframe
+                      className="h-full w-full"
+                      src={getEmbedUrl(product.media.demoVideo.url)}
+                      title="Product Demo Video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <video className="h-full w-full object-cover" controls src={product.media.demoVideo.url} />
+                  )}
+                </div>
               </div>
-              <div className="mt-4 text-center text-xs font-semibold text-white/70">Product Demo Video</div>
-            </div>
+            ) : null}
           </div>
 
           <div className="mt-5 grid grid-cols-4 gap-3">

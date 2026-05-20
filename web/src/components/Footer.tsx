@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import type { SiteConfig } from "@/lib/site";
 
@@ -6,7 +7,16 @@ export function Footer({ site }: { site: Pick<SiteConfig, "brand" | "footer"> })
   return (
     <footer className="mt-16 border-t border-border bg-[#0b1220] text-white">
       <Container className="grid gap-10 py-12 md:grid-cols-4">
-        <div className="space-y-3">
+        <div className="space-y-4">
+          <div className="relative inline-flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/10 shadow-sm bg-[#0a3525]">
+            <Image
+              src="/media/maxgreenLogo_v2.png"
+              alt={`${site.brand.name} logo`}
+              fill
+              sizes="44px"
+              className="object-cover"
+            />
+          </div>
           <div className="text-sm font-extrabold tracking-tight">{site.brand.logoText}</div>
           <p className="text-sm text-white/70">{site.footer.about}</p>
         </div>

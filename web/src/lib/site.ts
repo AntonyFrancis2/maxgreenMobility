@@ -121,6 +121,24 @@ export type Product = {
   cta: { title: string; subtitle: string; primary: string; secondary: string };
 };
 
+export type BlogPost = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  body: string; // HTML content from rich text editor
+  author: string;
+  coverImage: string;
+  tags: string[];
+  status: "draft" | "published";
+  publishedAt: string; // ISO 8601
+  updatedAt: string; // ISO 8601
+  seo: {
+    title: string;
+    description: string;
+    keywords: string[];
+  };
+};
+
 const products: Product[] = [electricRickshaw, electricCart, electricScooter, eLoader] as Product[];
 
 export function getSite(): SiteConfig {

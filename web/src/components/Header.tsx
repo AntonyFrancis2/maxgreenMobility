@@ -17,18 +17,18 @@ export function Header({ site }: { site: Pick<SiteConfig, "brand" | "nav" | "top
     <header className="sticky top-0 z-40 border-b border-border bg-white/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-6">
         <div className="flex items-center gap-3">
-          <Link href="/" className="flex items-center gap-2 font-extrabold tracking-tight">
-            <span className="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-white p-1 ring-1 ring-border">
+          <Link href="/" className="flex items-center gap-3 leading-none">
+            <span className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border shadow-sm bg-[#0a3525]">
               <Image
-                src="/media/maxgreenLogo.png"
+                src="/media/maxgreenLogo_v2.png"
                 alt={`${site.brand.name} logo`}
                 fill
-                sizes="32px"
+                sizes="40px"
                 className="object-cover"
                 priority
               />
             </span>
-            <span className="text-sm">{site.brand.logoText}</span>
+            <span className="font-extrabold tracking-tight text-sm text-foreground">{site.brand.logoText}</span>
           </Link>
         </div>
 
