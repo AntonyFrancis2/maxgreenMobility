@@ -104,7 +104,7 @@
     "logoText": "MAXGREEN MOBILITY"
   },
   "theme": {
-    "activePreset": "greenSubtle",
+    "activePreset": "teal",
     "presets": {
       "green": {
         "label": "Maxgreen",
