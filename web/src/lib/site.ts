@@ -62,7 +62,7 @@ export type HomeContent = {
   };
   whyChoose: {
     title: string;
-    items: { title: string; subtitle: string }[];
+    items: { title: string; subtitle: string; icon?: string }[];
   };
   trustedBy: { title: string; items: string[] };
   industries: { title: string; items: string[] };

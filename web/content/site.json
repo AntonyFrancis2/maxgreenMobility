@@ -342,27 +342,33 @@
       "items": [
         {
           "title": "Battery",
-          "subtitle": "Up to 3 years warranty & long life"
+          "subtitle": "Up to 3 years warranty & long life",
+          "icon": "battery"
         },
         {
           "title": "Save Fuel & Operating Costs",
-          "subtitle": "Upwards of ₹28,000/- per month savings per trolley"
+          "subtitle": "Upwards of ₹28,000/- per month savings per trolley",
+          "icon": "savings"
         },
         {
           "title": "Customizable",
-          "subtitle": "Models can be customized as per customer’s need"
+          "subtitle": "Models can be customized as per customer’s need",
+          "icon": "customizable"
         },
         {
           "title": "Heavy-Duty & Reliable Performance",
-          "subtitle": "Strong chassis, powerful load carrying capability, and dependable performance for continuous industrial use."
+          "subtitle": "Strong chassis, powerful load carrying capability, and dependable performance for continuous industrial use.",
+          "icon": "heavy-duty"
         },
         {
           "title": "Low Maintenance, High Uptime",
-          "subtitle": "Fewer moving parts compared to diesel vehicles means less breakdowns and more productivity."
+          "subtitle": "Fewer moving parts compared to diesel vehicles means less breakdowns and more productivity.",
+          "icon": "uptime"
         },
         {
           "title": "Direct Manufacturer Support",
-          "subtitle": "Backed by Maxgreen’s manufacturing expertise, fast service support, customization options, and trusted after-sales assistance since 1964."
+          "subtitle": "Backed by Maxgreen’s manufacturing expertise, fast service support, customization options, and trusted after-sales assistance since 1964.",
+          "icon": "support"
         }
       ]
     },

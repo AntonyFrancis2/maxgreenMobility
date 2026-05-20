@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     template: "%s · Maxgreen Mobility",
   },
   description: "Green mobility solutions for businesses.",
+  icons: {
+    icon: "/media/maxgreenLogo_v2.png",
+  },
 };
 
 export default async function RootLayout({

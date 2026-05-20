@@ -14,6 +14,55 @@ export const metadata: Metadata = {
   description: "Sustainable electric vehicles for modern businesses.",
 };
 
+function WhyChooseIcon({ name }: { name?: string }) {
+  switch (name) {
+    case "battery":
+      return (
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <rect x="2" y="7" width="16" height="10" rx="2" ry="2" />
+          <path d="M22 11v2" strokeLinecap="round" />
+          <path d="M9 10l-2 2h3l-2 2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "savings":
+      return (
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      );
+    case "customizable":
+      return (
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+        </svg>
+      );
+    case "heavy-duty":
+      return (
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 7v11a2 2 0 002 2h12a2 2 0 002-2V7M4 7a2 2 0 012-2h12a2 2 0 012 2M9 5V3a1 1 0 011-1h4a1 1 0 011 1v2M12 11v6M9 14h6" />
+        </svg>
+      );
+    case "uptime":
+      return (
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      );
+    case "support":
+      return (
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+        </svg>
+      );
+    default:
+      return (
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      );
+  }
+}
+
 export default async function Home() {
   const [site, productsCatalog] = await Promise.all([getSiteRuntime(), getProductsRuntime()]);
   const home = site.home;
@@ -111,7 +160,7 @@ export default async function Home() {
             {home.whyChoose.items.map((it) => (
               <div key={it.title} className={`rounded-[var(--radius-lg)] border border-border bg-surface p-6 ${stack}`}>
                 <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
-                  ✓
+                  <WhyChooseIcon name={it.icon} />
                 </div>
                 <div className="mt-4 font-bold">{it.title}</div>
                 <div className="mt-1 text-sm text-muted">{it.subtitle}</div>
