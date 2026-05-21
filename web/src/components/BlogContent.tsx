@@ -15,6 +15,18 @@ export function BlogContent({ html }: BlogContentProps) {
           color: var(--foreground);
           font-size: 1.05rem;
         }
+        .blog-prose::after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        .blog-prose h2,
+        .blog-prose h3,
+        .blog-prose h4,
+        .blog-prose hr,
+        .blog-prose blockquote {
+          clear: both;
+        }
         .blog-prose h2 {
           font-size: 1.85rem;
           font-weight: 800;

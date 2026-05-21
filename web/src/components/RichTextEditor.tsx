@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 
 interface RichTextEditorProps {
   value: string;
@@ -18,12 +18,18 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
   const isMounted = useRef(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [selectedImage, setSelectedImage] = useState<HTMLImageElement | null>(null);
+  const [menuPosition, setMenuPosition] = useState<{ top: number; left: number } | null>(null);
+
   const handleInput = useCallback(() => {
     if (editorRef.current) {
       const html = editorRef.current.innerHTML;
       lastHtml.current = html;
       onChange(html);
     }
+    // Clear image selection on change to prevent desync
+    setSelectedImage(null);
+    setMenuPosition(null);
   }, [onChange]);
 
   // Sync value from parent if it has changed externally
@@ -36,6 +42,49 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
       }
     }
   }, [value]);
+
+  // Listen for document clicks to dismiss popover when clicking outside the editor/image
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target) return;
+      
+      const isImg = target.tagName === "IMG" && editorRef.current?.contains(target);
+      const isPopover = target.closest(".image-popover-container");
+      
+      if (!isImg && !isPopover) {
+        setSelectedImage(null);
+        setMenuPosition(null);
+      }
+    };
+    
+    document.addEventListener("mousedown", handleDocumentClick);
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, []);
+
+  const handleEditorClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target && target.tagName === "IMG") {
+      const img = target as HTMLImageElement;
+      setSelectedImage(img);
+      
+      const container = editorRef.current?.parentElement;
+      if (container) {
+        const containerRect = container.getBoundingClientRect();
+        const imgRect = img.getBoundingClientRect();
+        
+        const topOffset = imgRect.bottom - containerRect.top;
+        const leftOffset = imgRect.left - containerRect.left + (imgRect.width / 2);
+        
+        setMenuPosition({ top: topOffset, left: leftOffset });
+      }
+    } else {
+      setSelectedImage(null);
+      setMenuPosition(null);
+    }
+  }, []);
 
   const exec = useCallback((command: string, value?: string) => {
     document.execCommand(command, false, value);
@@ -143,9 +192,9 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
   ];
 
   return (
-    <div className="space-y-0 rounded-xl border border-border overflow-hidden">
+    <div className="relative space-y-0 rounded-xl border border-border">
       {/* Toolbar */}
-      <div className="flex flex-wrap gap-1 border-b border-border bg-white/50 px-2 py-1.5">
+      <div className="sticky top-16 z-30 flex flex-wrap gap-1 border-b border-border bg-white/95 backdrop-blur-sm px-2 py-1.5 rounded-t-xl">
         {toolbarGroups.map((group, gi) => (
           <div key={gi} className="flex items-center gap-0.5">
             {gi > 0 && <div className="mx-1 h-5 w-px bg-border" />}
@@ -172,10 +221,11 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
         ref={editorRef}
         contentEditable
         suppressContentEditableWarning
-        className="min-h-[300px] px-4 py-3 text-sm text-foreground focus:outline-none prose-editor"
+        className="min-h-[300px] px-4 py-3 text-sm text-foreground focus:outline-none prose-editor rounded-b-xl"
         style={{ lineHeight: "1.7" }}
         onInput={handleInput}
         onBlur={handleInput}
+        onClick={handleEditorClick}
         data-placeholder={placeholder || "Start writing your blog post..."}
       />
 
@@ -186,6 +236,130 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
         className="hidden"
         onChange={handleImageUpload}
       />
+
+      {/* Selected Image Popover */}
+      {selectedImage && menuPosition && (
+        <div
+          className="image-popover-container absolute z-40 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-white/95 backdrop-blur-md px-3 py-2 shadow-xl"
+          style={{
+            top: `${menuPosition.top + 8}px`,
+            left: `${menuPosition.left}px`,
+            transform: "translateX(-50%)",
+          }}
+        >
+          {/* Sizing presets */}
+          <div className="flex items-center gap-1">
+            <span className="text-[10px] font-extrabold text-muted uppercase tracking-wider mr-1">Size:</span>
+            {(["25%", "50%", "75%", "100%"] as const).map((size) => {
+              const isActive = selectedImage.style.width === size;
+              return (
+                <button
+                  key={size}
+                  type="button"
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    selectedImage.style.width = size;
+                    selectedImage.removeAttribute("width");
+                    selectedImage.removeAttribute("height");
+                    handleInput();
+                  }}
+                  className={`rounded-lg px-2 py-1 text-[11px] font-bold transition-all ${
+                    isActive
+                      ? "bg-brand text-white shadow-sm"
+                      : "hover:bg-brand/10 text-foreground/80 hover:text-brand"
+                  }`}
+                >
+                  {size}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="h-4 w-px bg-border mx-1" />
+
+          {/* Alignment options */}
+          <div className="flex items-center gap-1">
+            <span className="text-[10px] font-extrabold text-muted uppercase tracking-wider mr-1">Align:</span>
+            {([
+              { key: "left", label: "Left", display: "inline", float: "left", margin: "0.5rem 1.5rem 0.5rem 0", clear: "none" },
+              { key: "center", label: "Center", display: "block", float: "none", margin: "1.5rem auto", clear: "both" },
+              { key: "right", label: "Right", display: "inline", float: "right", margin: "0.5rem 0 0.5rem 1.5rem", clear: "none" },
+            ] as const).map((align) => {
+              const isCurrent =
+                align.key === "center"
+                  ? selectedImage.style.display === "block" && selectedImage.style.float === "none"
+                  : selectedImage.style.float === align.float;
+
+              return (
+                <button
+                  key={align.key}
+                  type="button"
+                  title={`${align.label} Align`}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    selectedImage.style.display = align.display;
+                    selectedImage.style.float = align.float;
+                    selectedImage.style.margin = align.margin;
+                    selectedImage.style.clear = align.clear;
+                    handleInput();
+                  }}
+                  className={`rounded-lg px-2 py-1 text-[11px] font-bold transition-all ${
+                    isCurrent
+                      ? "bg-brand text-white shadow-sm"
+                      : "hover:bg-brand/10 text-foreground/80 hover:text-brand"
+                  }`}
+                >
+                  {align.label}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="h-4 w-px bg-border mx-1" />
+
+          {/* Custom dimension input */}
+          <div className="flex items-center gap-1.5">
+            <span className="text-[10px] font-extrabold text-muted uppercase tracking-wider">Custom:</span>
+            <input
+              type="text"
+              placeholder="e.g. 400px"
+              defaultValue={selectedImage.style.width || selectedImage.width || ""}
+              onMouseDown={(e) => e.stopPropagation()} // Let input work natively without document clicks triggering dismiss
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  const val = (e.target as HTMLInputElement).value.trim();
+                  if (val) {
+                    selectedImage.style.width = val;
+                    selectedImage.removeAttribute("width");
+                    selectedImage.removeAttribute("height");
+                    handleInput();
+                  }
+                }
+              }}
+              className="w-16 rounded-lg border border-border bg-white px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-brand font-semibold shadow-inner"
+            />
+          </div>
+
+          <div className="h-4 w-px bg-border mx-1" />
+
+          {/* Delete Button */}
+          <button
+            type="button"
+            title="Delete Image"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              selectedImage.remove();
+              setSelectedImage(null);
+              setMenuPosition(null);
+              handleInput();
+            }}
+            className="rounded-lg bg-red-50 hover:bg-red-100 p-1.5 text-xs text-red-600 transition-colors"
+          >
+            🗑️
+          </button>
+        </div>
+      )}
 
       {/* Styles for the editor */}
       <style>{`
@@ -242,6 +416,11 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
           max-width: 100%;
           border-radius: 12px;
           margin: 1rem 0;
+          transition: outline 0.15s ease-in-out;
+        }
+        .prose-editor img:hover {
+          outline: 2px solid var(--brand);
+          cursor: pointer;
         }
         .prose-editor hr {
           border: none;
@@ -260,6 +439,13 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
           border-radius: 4px;
           font-size: 0.85em;
           font-family: ui-monospace, monospace;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translate(-50%, 4px); }
+          to { opacity: 1; transform: translate(-50%, 0); }
+        }
+        .image-popover-container {
+          animation: fadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
       `}</style>
     </div>
