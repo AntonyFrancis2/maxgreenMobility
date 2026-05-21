@@ -34,7 +34,10 @@ export default function AdminEditPage() {
     (async () => {
       const res = await fetch("/api/admin/site");
       if (!res.ok) {
-        setStatus("Not authorized. Please login again.");
+        setStatus("Not authorized. Redirecting to login page...");
+        setTimeout(() => {
+          window.location.href = "/admin/login";
+        }, 1500);
         return;
       }
       const data = (await res.json()) as SiteConfig;
