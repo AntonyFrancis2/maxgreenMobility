@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { AdminField } from "@/components/AdminField";
+import { AdminMediaField } from "@/components/AdminMediaField";
+import { AdminUploader } from "@/components/AdminUploader";
 import { AdminObjectList, AdminStringList } from "@/components/AdminList";
 import { RichTextEditor } from "@/components/RichTextEditor";
 import type { BlogPost, Product, SiteConfig, ThemePresetId } from "@/lib/site";
@@ -1067,9 +1069,11 @@ export default function AdminEditPage() {
                           onChange={(v) => updatePost({ ...post, author: v })}
                         />
 
-                        <AdminField
-                          label="Cover image path (e.g. /media/blog/cover.png)"
+                        <AdminMediaField
+                          label="Cover image"
                           value={post.coverImage}
+                          folder="blog"
+                          accept="image/*"
                           onChange={(v) => updatePost({ ...post, coverImage: v })}
                         />
 
@@ -1338,6 +1342,10 @@ export default function AdminEditPage() {
 
             <div className="mt-4 text-xs text-muted">
               Tip: after clicking Save, refresh the normal website pages (`/`, `/about`, etc.) to see the new content.
+            </div>
+
+            <div className="mt-6 border-t border-border pt-6">
+              <AdminUploader label="General Media Uploader" folderDefault="blog" />
             </div>
           </div>
         </div>

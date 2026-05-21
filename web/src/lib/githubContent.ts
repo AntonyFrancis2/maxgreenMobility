@@ -107,3 +107,31 @@ export async function commitTextFile(opts: {
   return { ok: true, committedPath: opts.repoPath, commitSha };
 }
 
+export async function commitBinaryFile(opts: {
+  repoPath: string; // e.g. "web/public/media/uploads/pic.png"
+  buffer: Buffer;
+  message: string;
+}): Promise<GitHubWriteResult> {
+  const { owner, name, branch } = githubConfig();
+  const sha = await getFileSha(opts.repoPath, branch);
+
+  const body = {
+    message: opts.message,
+    content: opts.buffer.toString("base64"),
+    branch,
+    ...(sha ? { sha } : {}),
+  };
+
+  const res = await githubRequest(`/repos/${owner}/${name}/contents/${opts.repoPath}`, {
+    method: "PUT",
+    body: JSON.stringify(body),
+  });
+
+  const json = (await res.json()) as { commit?: { sha?: string } };
+  const commitSha = json.commit?.sha;
+  if (!commitSha) throw new Error("GitHub commit succeeded but no commit SHA returned");
+
+  return { ok: true, committedPath: opts.repoPath, commitSha };
+}
+
+

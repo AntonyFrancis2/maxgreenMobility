@@ -16,6 +16,7 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
   const editorRef = useRef<HTMLDivElement>(null);
   const lastHtml = useRef(value);
   const isMounted = useRef(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleInput = useCallback(() => {
     if (editorRef.current) {
@@ -64,10 +65,37 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
     }
   }, [exec]);
 
+  const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("folder", "blog");
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      if (!res.ok) {
+        alert("Upload failed: " + (await res.text()));
+        return;
+      }
+      const data = (await res.json()) as { path: string };
+      exec("insertImage", data.path);
+    } catch {
+      alert("Image upload failed");
+    } finally {
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  }, [exec]);
+
   const insertImage = useCallback(() => {
-    const url = prompt("Enter image path (e.g. /media/blog/image.png):");
-    if (url) {
-      exec("insertImage", url);
+    const choice = confirm("Press OK to upload an image from your computer, or Cancel to enter a web URL/path.");
+    if (choice) {
+      fileInputRef.current?.click();
+    } else {
+      const url = prompt("Enter image URL or path (e.g., /media/blog/image.png):");
+      if (url) {
+        exec("insertImage", url);
+      }
     }
   }, [exec]);
 
@@ -149,6 +177,14 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
         onInput={handleInput}
         onBlur={handleInput}
         data-placeholder={placeholder || "Start writing your blog post..."}
+      />
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleImageUpload}
       />
 
       {/* Styles for the editor */}
