@@ -14,9 +14,9 @@ export default function AdminLoginPage() {
     <div className="py-10">
       <Container className="max-w-lg">
         <div className="rounded-[var(--radius-lg)] border border-border bg-surface p-6 shadow-sm">
-          <div className="text-xl font-extrabold">Admin Login</div>
+          <div className="text-xl font-extrabold">Welcome Dhaivat Sir</div>
           <div className="mt-1 text-sm text-muted">
-            Enter the admin username and password to edit site content.
+            Enter the your Username and Password to edit site content.
           </div>
 
           <form
