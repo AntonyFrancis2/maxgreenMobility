@@ -64,6 +64,7 @@ export default function AdminLoginPage() {
               />
             </div>
 
+
             {error ? (
               <div className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
                 {error}
@@ -73,11 +74,6 @@ export default function AdminLoginPage() {
             <Button type="submit" className="w-full" variant="primary">
               {loading ? "Signing in…" : "Sign in"}
             </Button>
-
-            <div className="text-xs text-muted">
-              Demo creds (hardcoded): <span className="font-semibold">admin</span> /{" "}
-              <span className="font-semibold">maxgreen123</span>
-            </div>
           </form>
         </div>
       </Container>
