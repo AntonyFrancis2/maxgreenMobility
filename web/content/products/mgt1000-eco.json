@@ -13,6 +13,11 @@
         "id": "v1",
         "label": "Product",
         "image": "/media/products/mgt1000-eco.png"
+      },
+      {
+        "id": "v2",
+        "label": "View 2",
+        "image": "/media/products/mgt1000-eco.png"
       }
     ]
   },
