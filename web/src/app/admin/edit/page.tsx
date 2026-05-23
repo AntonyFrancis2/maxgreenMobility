@@ -537,6 +537,15 @@ export default function AdminEditPage() {
                       )
                     }
                   />
+                  <AdminField
+                    label="Leadership LinkedIn URL"
+                    value={site.about.leadership.linkedIn ?? ""}
+                    onChange={(v) =>
+                      setSite((s) =>
+                        s ? { ...s, about: { ...s.about, leadership: { ...s.about.leadership, linkedIn: v } } } : s
+                      )
+                    }
+                  />
 
                   <AdminField
                     label="Mission title"

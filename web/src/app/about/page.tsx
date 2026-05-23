@@ -98,9 +98,22 @@ export default async function AboutPage() {
                   </div>
                 </div>
               </div>
-              <div>
+              <div className="flex flex-col items-center">
                 <div className="text-sm font-extrabold">{about.leadership.name}</div>
                 <div className="text-xs text-muted">{about.leadership.title}</div>
+                {about.leadership.linkedIn && (
+                  <a
+                    href={about.leadership.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3.5 inline-flex items-center gap-2 rounded-xl bg-[#0077b5] px-4 py-2 text-xs font-bold text-white hover:bg-[#006297] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+                  >
+                    <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.67c0-.25.02-.5.1-.68a1.14 1.14 0 0 1 1-.77c.76 0 1 .58 1 1.42v4.7h2.8M6.5 8.37a1.37 1.37 0 1 0 0-2.75 1.37 1.37 0 0 0 0 2.75M8 18.5V10.13H5.2v8.37H8z" />
+                    </svg>
+                    Connect on LinkedIn
+                  </a>
+                )}
               </div>
             </div>
             <div className="md:col-span-2">

@@ -85,6 +85,7 @@ export type AboutContent = {
     quoteTitle: string;
     message: string[];
     image: string;
+    linkedIn?: string;
   };
   values: {
     title: string;
