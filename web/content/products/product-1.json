@@ -1,9 +1,9 @@
 {
-  "id": "product-1",
-  "name": "test2",
+  "id": "MGT Scissor Trolley",
+  "name": "MGT Scissor Trolley",
   "tagline": "Add a short tagline in Admin → Solutions → Products.",
   "media": {
-    "mainImage": "/media/maxgreen1.jpeg",
+    "mainImage": "/media/products/mgt_scissor__2_.png",
     "demoVideo": {
       "kind": "youtube",
       "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
