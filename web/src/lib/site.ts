@@ -64,7 +64,7 @@ export type HomeContent = {
     title: string;
     items: { title: string; subtitle: string; icon?: string }[];
   };
-  trustedBy: { title: string; items: string[] };
+  trustedBy?: { title: string; items: string[] };
   industries: { title: string; items: string[] };
   savings: {
     title: string;

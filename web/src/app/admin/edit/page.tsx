@@ -389,19 +389,41 @@ export default function AdminEditPage() {
                   <div className="text-sm font-extrabold">Trusted by</div>
                   <AdminField
                     label="Title"
-                    value={site.home.trustedBy.title}
+                    value={site.home.trustedBy?.title ?? ""}
                     onChange={(v) =>
                       setSite((s) =>
-                        s ? { ...s, home: { ...s.home, trustedBy: { ...s.home.trustedBy, title: v } } } : s
+                        s
+                          ? {
+                              ...s,
+                              home: {
+                                ...s.home,
+                                trustedBy: {
+                                  title: v,
+                                  items: s.home.trustedBy?.items ?? [],
+                                },
+                              },
+                            }
+                          : s
                       )
                     }
                   />
                   <AdminStringList
                     label="Trusted by items"
-                    items={site.home.trustedBy.items}
+                    items={site.home.trustedBy?.items ?? []}
                     onChange={(next) =>
                       setSite((s) =>
-                        s ? { ...s, home: { ...s.home, trustedBy: { ...s.home.trustedBy, items: next } } } : s
+                        s
+                          ? {
+                              ...s,
+                              home: {
+                                ...s.home,
+                                trustedBy: {
+                                  title: s.home.trustedBy?.title ?? "",
+                                  items: next,
+                                },
+                              },
+                            }
+                          : s
                       )
                     }
                   />
