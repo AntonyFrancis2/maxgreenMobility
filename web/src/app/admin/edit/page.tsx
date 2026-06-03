@@ -695,7 +695,7 @@ export default function AdminEditPage() {
                     >
                       {products.map((p) => (
                         <option key={p.filename} value={p.filename}>
-                          {p.filename}
+                          {p.json?.name ? `${p.json.name} (${p.filename})` : p.filename}
                         </option>
                       ))}
                     </select>
