@@ -134,4 +134,63 @@ export async function commitBinaryFile(opts: {
   return { ok: true, committedPath: opts.repoPath, commitSha };
 }
 
+export async function fetchTextFile(relativeToContentRoot: string): Promise<string> {
+  const repoPath = toRepoContentPath(relativeToContentRoot);
+  const { owner, name, branch } = githubConfig();
+  
+  const { token, apiBase } = githubConfig();
+  const res = await fetch(
+    `${apiBase}/repos/${owner}/${name}/contents/${encodeURIComponent(repoPath).replaceAll("%2F", "/")}?ref=${encodeURIComponent(branch)}`,
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/vnd.github.v3.raw",
+        Authorization: `Bearer ${token}`,
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+      next: { revalidate: 10 },
+    }
+  );
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`GitHub fetchTextFile API error ${res.status} ${res.statusText}: ${text}`);
+  }
+
+  return res.text();
+}
+
+export async function listDirectoryFiles(relativeToContentRoot: string): Promise<string[]> {
+  const repoPath = toRepoContentPath(relativeToContentRoot);
+  const { owner, name, branch } = githubConfig();
+  
+  const { token, apiBase } = githubConfig();
+  try {
+    const res = await fetch(
+      `${apiBase}/repos/${owner}/${name}/contents/${encodeURIComponent(repoPath).replaceAll("%2F", "/")}?ref=${encodeURIComponent(branch)}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${token}`,
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+        next: { revalidate: 10 },
+      }
+    );
+
+    if (res.status === 404) return [];
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`GitHub listDirectoryFiles API error ${res.status} ${res.statusText}: ${text}`);
+    }
+
+    const json = (await res.json()) as { name: string; type: string }[];
+    return json.filter((x) => x.type === "file").map((x) => x.name);
+  } catch (e) {
+    console.error("Failed to list directory from GitHub:", e);
+    return [];
+  }
+}
+
 
