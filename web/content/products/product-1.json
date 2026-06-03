@@ -13,6 +13,16 @@
         "id": "v1",
         "label": "View 1",
         "image": "/media/products/e-loader.svg"
+      },
+      {
+        "id": "v2",
+        "label": "View 2",
+        "image": ""
+      },
+      {
+        "id": "v3",
+        "label": "View 3",
+        "image": ""
       }
     ]
   },
