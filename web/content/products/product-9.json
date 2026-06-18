@@ -38,16 +38,20 @@
       "value": "4 to 6 hours"
     },
     {
-      "label": "Tyre type",
-      "value": "Heavy duty solid rubber tyres"
+      "label": "Charging time ",
+      "value": "7.5 hours"
     },
     {
-      "label": "Steering ",
-      "value": "Mechanical"
+      "label": "Controller",
+      "value": "Curtis controller"
     },
     {
-      "label": "Braking ",
-      "value": "Hydraulic braking"
+      "label": "Gradeability ",
+      "value": "15% (full load)"
+    },
+    {
+      "label": "Turning radius",
+      "value": "3950 mm"
     }
   ],
   "features": [
