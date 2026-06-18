@@ -52,6 +52,14 @@
     {
       "label": "Speed",
       "value": "8 - 10 km/h (with load)"
+    },
+    {
+      "label": "Gradeability ",
+      "value": "(Full Load) 15%"
+    },
+    {
+      "label": "Turning Radius",
+      "value": "3950 mm"
     }
   ],
   "features": [
