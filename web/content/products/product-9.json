@@ -38,24 +38,24 @@
       "value": "4 to 6 hours"
     },
     {
-      "label": "Tyre type",
-      "value": "Heavy duty solid rubber tyres"
+      "label": "Charging time ",
+      "value": "7.5 hours"
     },
     {
-      "label": "Steering ",
-      "value": "Mechanical"
+      "label": "Controller",
+      "value": "Curtis controller"
     },
     {
-      "label": "Braking ",
-      "value": "Hydraulic braking"
+      "label": "Gradeability ",
+      "value": "15% (full load)"
     },
     {
-      "label": "Speed",
-      "value": "8 - 10 km/h (with load)"
+      "label": "Turning radius",
+      "value": "3950 mm"
     }
   ],
   "features": [
-    "Edit key features in Admin → Solutions → Products."
+    "Key Features ✔ ✔✔ ✔✔ ✔ 20 Ton Payload Capacity ✔ ✔ 100% Electric Drive System ✔ ✔✔ ✔✔ 20 Ton Payload Capacity 100% Electric Drive System Ion LFP Battery Technology Duty Configuration ✔ Li-Ion LFP Battery Technology ✔ ✔ 6 Wheeler Heavy-Duty Configuration ✔ ✔✔ ✔✔ ✔ Travel Speed (Loaded): 8 ✔ ✔ Gear Box Mechanical Steering ✔ ✔✔ ✔✔ ✔ Hydraulic Braking System ✔ Travel Speed (Loaded): 8–10 km/hr Gear Box Mechanical Steering Hydraulic Braking System Advanced Curtis Controller Zero Tailpipe Emissions Zero Tailpipe Emissions ✔ Advanced Curtis Controller ✔ ✔✔ ✔✔ ✔ Zero Tailpipe Emissions ✔ ✔ Zero Tailpipe Emissions ✔ ✔✔ ✔✔ ✔ Dual Motor Set up ✔ ✔ Dual Drive Axel"
   ],
   "kpis": [
     {
