@@ -38,8 +38,16 @@
       "value": "4 to 6 hours"
     },
     {
-      "label": "Charging time ",
-      "value": "7.5 hours"
+      "label": "Tyre type",
+      "value": "Heavy duty solid rubber tyres"
+    },
+    {
+      "label": "Steering ",
+      "value": "Mechanical"
+    },
+    {
+      "label": "Braking ",
+      "value": "Hydraulic braking"
     }
   ],
   "features": [
