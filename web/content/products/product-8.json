@@ -20,6 +20,22 @@
     {
       "label": "Bucket Dimensions (LxWxH)",
       "value": "1150 x 640 x 490 mm"
+    },
+    {
+      "label": "Battery Type",
+      "value": "Lithium ion"
+    },
+    {
+      "label": "Body ",
+      "value": "MS Body"
+    },
+    {
+      "label": "Forward Speed",
+      "value": "20 km/h (Customizable)"
+    },
+    {
+      "label": "Range Per (Charge)",
+      "value": " 20-25 Km"
     }
   ],
   "features": [
