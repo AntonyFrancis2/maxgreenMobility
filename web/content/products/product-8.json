@@ -1,7 +1,7 @@
 {
   "id": "product-8",
   "name": "MGT E-Barrow",
-  "tagline": "Move More. Push Less.",
+  "tagline": "Add a short tagline in Admin → Solutions → Products.",
   "media": {
     "mainImage": "/media/products/mgt1000wb.png",
     "demoVideo": {
@@ -12,7 +12,7 @@
       {
         "id": "v1",
         "label": "View 1",
-        "image": "/media/products/e-loader.svg"
+        "image": "/media/products/mgt1000wb.png"
       }
     ]
   },
