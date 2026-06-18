@@ -18,8 +18,16 @@
   },
   "specs": [
     {
-      "label": "Specification",
-      "value": "Edit in Solutions → Products"
+      "label": "Bucket Length",
+      "value": "1150 mm"
+    },
+    {
+      "label": "Bucket Width",
+      "value": "640 mm"
+    },
+    {
+      "label": "Bucket Height",
+      "value": "490 mm"
     }
   ],
   "features": [
