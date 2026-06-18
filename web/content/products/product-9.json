@@ -36,6 +36,10 @@
     {
       "label": "Operating range",
       "value": "4 to 6 hours"
+    },
+    {
+      "label": "Charging time ",
+      "value": "7.5 hours"
     }
   ],
   "features": [
