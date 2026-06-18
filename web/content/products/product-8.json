@@ -36,6 +36,14 @@
     {
       "label": "Range Per (Charge)",
       "value": " 20-25 Km"
+    },
+    {
+      "label": "Battery Warranty ",
+      "value": "1 Year"
+    },
+    {
+      "label": "Battery Charging Time",
+      "value": "2.5 H (Fast Charger)"
     }
   ],
   "features": [
