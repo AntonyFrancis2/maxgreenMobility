@@ -18,16 +18,8 @@
   },
   "specs": [
     {
-      "label": "Bucket Length",
-      "value": "1150 mm"
-    },
-    {
-      "label": "Bucket Width",
-      "value": "640 mm"
-    },
-    {
-      "label": "Bucket Height",
-      "value": "490 mm"
+      "label": "Bucket Dimensions (LxWxH)",
+      "value": "1150 x 640 x 490"
     }
   ],
   "features": [
