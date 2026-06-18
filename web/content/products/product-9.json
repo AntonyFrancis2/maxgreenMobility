@@ -20,6 +20,10 @@
     {
       "label": "Payload capacity",
       "value": "20,000 kilograms"
+    },
+    {
+      "label": "Drive type",
+      "value": "Full Electric"
     }
   ],
   "features": [
