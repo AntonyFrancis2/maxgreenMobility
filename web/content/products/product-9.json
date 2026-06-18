@@ -28,6 +28,10 @@
     {
       "label": "Configuration",
       "value": "6 wheeler"
+    },
+    {
+      "label": "Battery pack",
+      "value": "Lithium-ion LFP"
     }
   ],
   "features": [
