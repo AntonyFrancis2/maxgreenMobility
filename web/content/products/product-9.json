@@ -32,6 +32,10 @@
     {
       "label": "Battery pack",
       "value": "Lithium-ion LFP"
+    },
+    {
+      "label": "Operating range",
+      "value": "4 to 6 hours"
     }
   ],
   "features": [
