@@ -24,6 +24,10 @@
     {
       "label": "Drive type",
       "value": "Full Electric"
+    },
+    {
+      "label": "Configuration",
+      "value": "6 wheeler"
     }
   ],
   "features": [
