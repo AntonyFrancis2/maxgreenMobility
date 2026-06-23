@@ -51,10 +51,10 @@
   ],
   "kpis": [
     {
-      "label": "Metric",
-      "value": "—",
-      "subLabel": "Editable KPI",
-      "tone": "brand"
+      "label": "Maintenance",
+      "value": "Zero",
+      "subLabel": "low upkeep",
+      "tone": "orange"
     }
   ],
   "cta": {
