@@ -5,8 +5,8 @@
   "media": {
     "mainImage": "/media/products/mgt-tt20.png",
     "demoVideo": {
-      "kind": "youtube",
-      "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+      "kind": "file",
+      "url": ""
     },
     "views": [
       {
