@@ -18,12 +18,47 @@
   },
   "specs": [
     {
-      "label": "Specification",
-      "value": "Edit in Solutions → Products"
+      "label": "Overall Dimensions",
+      "value": "8 ft length × 4 ft width (or 6 ft length × 3 ft width)"
+    },
+    {
+      "label": "Motor ",
+      "value": "Robust BLDC Motor"
+    },
+    {
+      "label": "Battery",
+      "value": "LFP (3 years warranty)"
+    },
+    {
+      "label": "Range",
+      "value": "35 kms per charge"
+    },
+    {
+      "label": "Top Speed",
+      "value": "10 to 25 km/h (controllable as per requirement)"
+    },
+    {
+      "label": "Cargo Capacity",
+      "value": "1000 kgs"
+    },
+    {
+      "label": "Charging Time",
+      "value": "2.5 hours (Fast Charger) / 6 hours (Standard Charger)"
     }
   ],
   "features": [
-    "Edit key features in Admin → Solutions → Products."
+    "Powerful electric performance",
+    "Fog lamps + side indicators",
+    "Foldable side railings",
+    "Collapsible steering handle",
+    "Heavy-duty load carrying capacity",
+    "Zero fuel cost operation — save ₹28,000+ every month per trolley",
+    "Silent & eco-friendly running",
+    "Strong industrial-grade chassis",
+    "Smooth driving & easy handling",
+    "Fast & efficient charging",
+    "Ideal for factories, warehouses & campuses",
+    "Durable suspension for rough internal roads"
   ],
   "kpis": [
     {
