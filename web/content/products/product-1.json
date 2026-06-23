@@ -18,8 +18,32 @@
   },
   "specs": [
     {
-      "label": "Specification",
-      "value": "Edit in Solutions → Productshshshsg"
+      "label": "Platform bed dimensions",
+      "value": "8ft lenght x 4ft width (customizable)"
+    },
+    {
+      "label": "Motor",
+      "value": "Robust BLDC Motor"
+    },
+    {
+      "label": "Battery",
+      "value": "LFP (1 year warranty)"
+    },
+    {
+      "label": "Run time",
+      "value": "8 to 10 hours"
+    },
+    {
+      "label": "Speed",
+      "value": "10 to 15 km/h (customizable)"
+    },
+    {
+      "label": "Cargo Capacity",
+      "value": "1000 kilograms"
+    },
+    {
+      "label": "Charging Time",
+      "value": "2.5 hours (Fast Charger) / 6 hours (Standard Charger)"
     }
   ],
   "features": [
