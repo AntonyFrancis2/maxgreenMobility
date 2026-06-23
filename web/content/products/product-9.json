@@ -93,6 +93,12 @@
       "value": "6 wheel setup",
       "subLabel": "Creates more traction while pulling",
       "tone": "orange"
+    },
+    {
+      "label": "Emissions",
+      "value": "ZERO",
+      "subLabel": "Eco-friendly operations",
+      "tone": "orange"
     }
   ],
   "cta": {
