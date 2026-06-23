@@ -81,6 +81,12 @@
       "value": "Powerful Dual Motor Setup",
       "subLabel": "Delivers effortless performance",
       "tone": "orange"
+    },
+    {
+      "label": "Juggernaut",
+      "value": "PULLS 20,000 kgs",
+      "subLabel": "Made to pull",
+      "tone": "orange"
     }
   ],
   "cta": {
