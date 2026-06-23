@@ -77,8 +77,8 @@
   ],
   "kpis": [
     {
-      "label": "Metric",
-      "value": "—",
+      "label": "Motor",
+      "value": "Powerful Dual Motor Setup",
       "subLabel": "Editable KPI",
       "tone": "brand"
     }
