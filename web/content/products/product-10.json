@@ -18,8 +18,32 @@
   },
   "specs": [
     {
-      "label": "Specification",
-      "value": "Edit in Solutions → Products"
+      "label": "Overall Dimensions",
+      "value": "8 ft length × 4 ft width"
+    },
+    {
+      "label": "Motor Power",
+      "value": "Robust BLDC Motor"
+    },
+    {
+      "label": "Battery",
+      "value": "LFP (3 years warranty)"
+    },
+    {
+      "label": "Range",
+      "value": "4 hours / 35 kms per charge"
+    },
+    {
+      "label": "Top Speed",
+      "value": "10 to 25 km/h (controllable as per requirement)"
+    },
+    {
+      "label": "Cargo Capacity",
+      "value": "1000 kgs"
+    },
+    {
+      "label": "Charging Time",
+      "value": "2.5 hours (Fast Charger) / 6 hours (Standard Charger)"
     }
   ],
   "features": [
