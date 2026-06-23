@@ -44,6 +44,10 @@
     {
       "label": "Battery Charging Time",
       "value": "2.5 H (Fast Charger)"
+    },
+    {
+      "label": "Payload capacity",
+      "value": "700 kilograms"
     }
   ],
   "features": [
