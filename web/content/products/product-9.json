@@ -78,7 +78,7 @@
   "kpis": [
     {
       "label": "Powerful Motor",
-      "value": " Dual Motor Setup",
+      "value": " Dual motor setup",
       "subLabel": "Delivers effortless performance",
       "tone": "orange"
     },
@@ -86,6 +86,12 @@
       "label": "Juggernaut",
       "value": "Pulls 20,000 kgs",
       "subLabel": "Made to pull",
+      "tone": "orange"
+    },
+    {
+      "label": "Traction king",
+      "value": "6 wheel setup",
+      "subLabel": "Creates more traction while pulling",
       "tone": "orange"
     }
   ],
