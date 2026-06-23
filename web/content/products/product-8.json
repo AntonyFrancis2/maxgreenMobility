@@ -61,6 +61,18 @@
       "value": "₹28,000+",
       "subLabel": "per month / trolley",
       "tone": "orange"
+    },
+    {
+      "label": "Battery warranty",
+      "value": "1 year ",
+      "subLabel": "",
+      "tone": "orange"
+    },
+    {
+      "label": "ROI",
+      "value": "4–5 months",
+      "subLabel": "typical payback",
+      "tone": "orange"
     }
   ],
   "cta": {
