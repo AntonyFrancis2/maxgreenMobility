@@ -55,6 +55,12 @@
       "value": "Zero",
       "subLabel": "low upkeep",
       "tone": "orange"
+    },
+    {
+      "label": "Savings",
+      "value": "₹28,000+",
+      "subLabel": "per month / trolley",
+      "tone": "orange"
     }
   ],
   "cta": {
