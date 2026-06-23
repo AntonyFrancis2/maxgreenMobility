@@ -59,7 +59,14 @@
     "Ideal for factories, warehouses, campuses & resorts",
     "Durable suspension for rough internal roads"
   ],
-  "kpis": [],
+  "kpis": [
+    {
+      "label": "Maintenance",
+      "value": "Zero",
+      "subLabel": "low upkeep",
+      "tone": "orange"
+    }
+  ],
   "cta": {
     "title": "Interested in MGT1000-box container?",
     "subtitle": "Get in touch for a demo or quote.",
