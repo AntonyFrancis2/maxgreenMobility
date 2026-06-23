@@ -77,6 +77,12 @@
       "value": "3 years",
       "subLabel": "Hassle-free after sales support",
       "tone": "orange"
+    },
+    {
+      "label": "ROI - Return on Investment",
+      "value": "4–5 months",
+      "subLabel": "typical payback",
+      "tone": "orange"
     }
   ],
   "cta": {
