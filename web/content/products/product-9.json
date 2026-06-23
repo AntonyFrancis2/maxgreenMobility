@@ -77,8 +77,8 @@
   ],
   "kpis": [
     {
-      "label": "Motor",
-      "value": "Powerful Dual Motor Setup",
+      "label": "Powerful Motor",
+      "value": " Dual Motor Setup",
       "subLabel": "Delivers effortless performance",
       "tone": "orange"
     },
