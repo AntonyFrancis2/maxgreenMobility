@@ -46,9 +46,7 @@
       "value": "2.5 H (Fast Charger)"
     }
   ],
-  "features": [
-    "Edit key features in Admin → Solutions → Products."
-  ],
+  "features": [],
   "kpis": [
     {
       "label": "Maintenance",
