@@ -47,7 +47,11 @@
     }
   ],
   "features": [
-    ""
+    "Powerful electric performance",
+    "Heavy-duty load carrying capacity",
+    "Silent & eco-friendly running",
+    "Strong industrial-grade chassis",
+    "Ideal for factories, warehouses & campuses"
   ],
   "kpis": [
     {
@@ -76,7 +80,7 @@
     }
   ],
   "cta": {
-    "title": "Interested in MGT Scissor Trolley",
+    "title": "Interested in test2?",
     "subtitle": "Get in touch for a demo or quote.",
     "primary": "Request a Quote",
     "secondary": "Schedule Demo"
