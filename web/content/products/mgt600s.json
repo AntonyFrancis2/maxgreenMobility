@@ -5,7 +5,7 @@
   "media": {
     "mainImage": "/media/products/mgt600s.png",
     "demoVideo": {
-      "kind": "youtube",
+      "kind": "file",
       "url": ""
     },
     "views": [
