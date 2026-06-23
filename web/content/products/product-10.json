@@ -65,6 +65,18 @@
       "value": "Zero",
       "subLabel": "low upkeep",
       "tone": "orange"
+    },
+    {
+      "label": "Savings",
+      "value": "₹28,000+",
+      "subLabel": "per month / trolley",
+      "tone": "orange"
+    },
+    {
+      "label": "Battery warranty",
+      "value": "3 years",
+      "subLabel": "Hassle-free after sales support",
+      "tone": "orange"
     }
   ],
   "cta": {
