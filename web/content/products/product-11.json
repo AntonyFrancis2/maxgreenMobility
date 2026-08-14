@@ -3,7 +3,7 @@
   "name": "MGT1000 - Roller bed",
   "tagline": "Add a short tagline in Admin → Solutions → Products.",
   "media": {
-    "mainImage": "/media/products/chatgpt_image_aug_14__2026__01_09_13_pm.png",
+    "mainImage": "/media/products/mgt1000-roller_bed.png",
     "demoVideo": {
       "kind": "file",
       "url": ""
@@ -12,7 +12,7 @@
       {
         "id": "v1",
         "label": "View 1",
-        "image": "/media/products/mgt1000-roller_bed.png"
+        "image": "/media/products/chatgpt_image_aug_14__2026__01_09_13_pm.png"
       }
     ]
   },
