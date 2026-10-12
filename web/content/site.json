@@ -363,6 +363,10 @@
         {
           "label": "Wheel barrow",
           "href": "/solutions?product=product-13"
+        },
+        {
+          "label": "New product1",
+          "href": "/solutions?product=product-15"
         }
       ]
     },
