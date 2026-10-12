@@ -1,6 +1,6 @@
 {
   "id": "product-14",
-  "name": "New product",
+  "name": "wheel Barrow 2",
   "tagline": "Add a short tagline in Admin → Solutions → Products.",
   "media": {
     "mainImage": "/media/maxgreen1.jpeg",
@@ -34,7 +34,7 @@
     }
   ],
   "cta": {
-    "title": "Interested in New product?",
+    "title": "Interested in wheel Barrow 2?",
     "subtitle": "Get in touch for a demo or quote.",
     "primary": "Request a Quote",
     "secondary": "Schedule Demo"
