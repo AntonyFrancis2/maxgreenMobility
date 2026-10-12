@@ -1,9 +1,9 @@
 import "server-only";
 
 import path from "path";
-import { readdir, readFile } from "fs/promises";
 import type { Product, SiteConfig } from "@/lib/site";
 import { resolveHomeTileToProduct } from "@/lib/homeProducts";
+import { getProductFilesRuntime } from "@/lib/runtimeContent";
 
 function nextIterativeProductNumber(catalog: Product[], fileBasenames: Set<string>): number {
   let max = 0;
@@ -53,21 +53,21 @@ export function createDefaultProductJson(id: string, name: string): Product {
  * Existing matches get a canonical `/solutions?product=<id>` href.
  */
 export async function provisionProductsForHomeTiles(
-  site: SiteConfig,
-  cwd: string
+  site: SiteConfig
 ): Promise<{ site: SiteConfig; created: { id: string; body: string }[] }> {
-  const dir = path.join(cwd, "content", "products");
-  const jsonNames = (await readdir(dir).catch(() => [])).filter((f) => f.endsWith(".json"));
-  const fileBasenames = new Set(jsonNames.map((f) => path.basename(f, ".json")));
+  // Must read the live catalog (GitHub when configured). Reading the deployed snapshot made
+  // every save re-create products added since the last deploy, overwriting their edits.
+  const productFiles = await getProductFilesRuntime();
+  const fileBasenames = new Set(productFiles.map((f) => path.basename(f.filename, ".json")));
 
   let catalog: Product[] = [];
-  for (const file of jsonNames) {
+  for (const { raw } of productFiles) {
+    if (raw === null) continue; // filename still reserved
     try {
-      const raw = await readFile(path.join(dir, file), "utf8");
       const p = JSON.parse(raw) as Product;
       if (p?.id) catalog.push(p);
     } catch {
-      // ignore broken files for catalog, filename still reserved on disk
+      // ignore broken files for catalog, filename still reserved
     }
   }
 

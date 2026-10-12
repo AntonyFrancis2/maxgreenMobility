@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthed } from "@/lib/adminAuth";
 import path from "path";
-import { readdir, readFile, writeFile } from "fs/promises";
+import { writeFile } from "fs/promises";
 import { ensureProductJsonShape } from "@/lib/coerceProduct";
 import { commitTextFile, githubEnabled, toRepoContentPath } from "@/lib/githubContent";
+import { getProductFilesRuntime } from "@/lib/runtimeContent";
 
 function productsDir() {
   return path.join(process.cwd(), "content", "products");
@@ -12,18 +13,22 @@ function productsDir() {
 export async function GET() {
   if (!(await isAdminAuthed())) return new NextResponse("Unauthorized", { status: 401 });
 
-  const dir = productsDir();
-  const files = (await readdir(dir)).filter((f) => f.endsWith(".json"));
-  const products: { filename: string; json: unknown }[] = [];
-
-  for (const filename of files) {
-    try {
-      const raw = await readFile(path.join(dir, filename), "utf8");
-      products.push({ filename, json: ensureProductJsonShape(JSON.parse(raw)) });
-    } catch {
-      products.push({ filename, json: null });
-    }
+  // Read from the same source the public site uses; on Vercel the bundled files are only a
+  // snapshot from the last deploy and miss products the admin added since.
+  let files: { filename: string; raw: string | null }[];
+  try {
+    files = await getProductFilesRuntime();
+  } catch (e) {
+    return new NextResponse(`Failed to load products: ${String(e)}`, { status: 502 });
   }
+
+  const products: { filename: string; json: unknown }[] = files.map(({ filename, raw }) => {
+    try {
+      return { filename, json: raw === null ? null : ensureProductJsonShape(JSON.parse(raw)) };
+    } catch {
+      return { filename, json: null };
+    }
+  });
 
   return NextResponse.json({ files: products });
 }

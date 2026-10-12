@@ -60,6 +60,40 @@ export async function getProductsRuntime(): Promise<Product[]> {
   return products;
 }
 
+/**
+ * Raw product files from the same source the public site reads (GitHub when configured, else disk).
+ * Unlike `getProductsRuntime`, this throws instead of silently falling back, because admin
+ * callers would otherwise show or overwrite a stale catalog.
+ * A file that fails to load is returned with `raw: null` so its filename stays reserved.
+ */
+export async function getProductFilesRuntime(): Promise<{ filename: string; raw: string | null }[]> {
+  noStore();
+  if (githubEnabled()) {
+    const files = (await listDirectoryFiles("content/products")).filter((f) => f.endsWith(".json")).sort();
+    // listDirectoryFiles returns [] on API errors; an empty catalog is never valid here.
+    if (files.length === 0) throw new Error("Could not list content/products from GitHub");
+    return await Promise.all(
+      files.map(async (filename) => {
+        try {
+          return { filename, raw: await fetchTextFile(`content/products/${filename}`) };
+        } catch (e) {
+          console.error(`Failed to fetch product ${filename} from GitHub:`, e);
+          return { filename, raw: null };
+        }
+      })
+    );
+  }
+
+  const dir = path.join(process.cwd(), "content", "products");
+  const files = (await readdir(dir).catch(() => [] as string[])).filter((f) => f.endsWith(".json")).sort();
+  return await Promise.all(
+    files.map(async (filename) => ({
+      filename,
+      raw: await readFile(path.join(dir, filename), "utf8").catch(() => null),
+    }))
+  );
+}
+
 export async function getBlogPostsRuntime(
   filter: "all" | "published" = "published"
 ): Promise<BlogPost[]> {

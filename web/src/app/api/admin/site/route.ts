@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     }
 
     const cwd = process.cwd();
-    const { site: siteProvisioned, created } = await provisionProductsForHomeTiles(cleaned, cwd);
+    const { site: siteProvisioned, created } = await provisionProductsForHomeTiles(cleaned);
 
     const createdIds = created.map((c) => c.id);
 
