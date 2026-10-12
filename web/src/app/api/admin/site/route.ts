@@ -1,11 +1,19 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthed } from "@/lib/adminAuth";
 import type { SiteConfig } from "@/lib/site";
-import { provisionProductsForHomeTiles } from "@/lib/provisionHomeProducts";
+import {
+  deleteProductFile,
+  loadProductCatalogFiles,
+  productFilesUsedByTiles,
+  provisionProductsForHomeTiles,
+} from "@/lib/provisionHomeProducts";
 import { getSiteRuntime } from "@/lib/runtimeContent";
 import path from "path";
 import { writeFile } from "fs/promises";
 import { commitTextFile, githubEnabled, toRepoContentPath } from "@/lib/githubContent";
+
+// Admin must always see and act on the latest GitHub content, not the 10s fetch cache.
+export const fetchCache = "force-no-store";
 
 export async function GET() {
   if (!(await isAdminAuthed())) return new NextResponse("Unauthorized", { status: 401 });
@@ -35,6 +43,11 @@ export async function POST(req: Request) {
       };
     }
 
+    // Products linked from the currently saved Home cards, so removed cards can delete their product.
+    const previousSite = await getSiteRuntime();
+    const catalogBefore = await loadProductCatalogFiles();
+    const usedBefore = productFilesUsedByTiles(previousSite.home?.products?.items ?? [], catalogBefore);
+
     const cwd = process.cwd();
     const { site: siteProvisioned, created } = await provisionProductsForHomeTiles(cleaned);
 
@@ -55,16 +68,26 @@ export async function POST(req: Request) {
 
     const text = JSON.stringify(siteProvisioned, null, 2) + "\n";
 
+    // A product whose Home card was removed (and that no other card still uses) is deleted
+    // after site.json is saved, so a failed delete never leaves a card pointing at nothing.
+    const usedAfter = productFilesUsedByTiles(siteProvisioned.home.products.items, catalogBefore);
+    const removedFiles = [...usedBefore].filter((f) => !usedAfter.has(f));
+    const deleteRemovedProducts = async () => {
+      for (const filename of removedFiles) await deleteProductFile(filename);
+    };
+
     if (githubEnabled()) {
       const result = await commitTextFile({
         repoPath: toRepoContentPath("content/site.json"),
         text,
         message: `Admin: update site config (${new Date().toISOString()})`,
       });
+      await deleteRemovedProducts();
       return NextResponse.json({
         ...result,
         persisted: "github",
         createdProductIds: createdIds,
+        deletedProductFiles: removedFiles,
         site: siteProvisioned,
       });
     }
@@ -73,10 +96,12 @@ export async function POST(req: Request) {
     // Note: On Vercel, filesystem writes are not guaranteed to persist unless using GitHub persistence above.
     const filePath = path.join(cwd, "content", "site.json");
     await writeFile(filePath, text, "utf8");
+    await deleteRemovedProducts();
     return NextResponse.json({
       ok: true,
       persisted: "fs",
       createdProductIds: createdIds,
+      deletedProductFiles: removedFiles,
       site: siteProvisioned,
     });
   } catch (e) {

@@ -107,6 +107,27 @@ export async function commitTextFile(opts: {
   return { ok: true, committedPath: opts.repoPath, commitSha };
 }
 
+/** Deletes a file in one commit. Returns null if the file was already gone. */
+export async function deleteRepoFile(opts: {
+  repoPath: string; // e.g. "web/content/products/product-14.json"
+  message: string;
+}): Promise<GitHubWriteResult | null> {
+  const { owner, name, branch } = githubConfig();
+  const sha = await getFileSha(opts.repoPath, branch);
+  if (!sha) return null;
+
+  const res = await githubRequest(`/repos/${owner}/${name}/contents/${opts.repoPath}`, {
+    method: "DELETE",
+    body: JSON.stringify({ message: opts.message, sha, branch }),
+  });
+
+  const json = (await res.json()) as { commit?: { sha?: string } };
+  const commitSha = json.commit?.sha;
+  if (!commitSha) throw new Error("GitHub delete succeeded but no commit SHA returned");
+
+  return { ok: true, committedPath: opts.repoPath, commitSha };
+}
+
 export async function commitBinaryFile(opts: {
   repoPath: string; // e.g. "web/public/media/uploads/pic.png"
   buffer: Buffer;

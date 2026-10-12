@@ -1,7 +1,9 @@
 import "server-only";
 
 import path from "path";
+import { unlink } from "fs/promises";
 import type { Product, SiteConfig } from "@/lib/site";
+import { deleteRepoFile, githubEnabled, toRepoContentPath } from "@/lib/githubContent";
 import { resolveHomeTileToProduct } from "@/lib/homeProducts";
 import { getProductFilesRuntime } from "@/lib/runtimeContent";
 
@@ -45,6 +47,51 @@ export function createDefaultProductJson(id: string, name: string): Product {
       secondary: "Schedule Demo",
     },
   };
+}
+
+/** Live catalog as filename → parsed product (unparseable files are skipped). */
+export async function loadProductCatalogFiles(): Promise<{ filename: string; product: Product }[]> {
+  const out: { filename: string; product: Product }[] = [];
+  for (const { filename, raw } of await getProductFilesRuntime()) {
+    if (raw === null) continue;
+    try {
+      const product = JSON.parse(raw) as Product;
+      if (product?.id) out.push({ filename, product });
+    } catch {
+      // ignore broken files
+    }
+  }
+  return out;
+}
+
+/** Product filenames that the given Home tiles resolve to (same matching as the public pages). */
+export function productFilesUsedByTiles(
+  items: { label: string; href: string }[],
+  catalogFiles: { filename: string; product: Product }[]
+): Set<string> {
+  const catalog = catalogFiles.map((c) => c.product);
+  const used = new Set<string>();
+  for (const item of items) {
+    const matched = resolveHomeTileToProduct(item, catalog);
+    const entry = matched && catalogFiles.find((c) => c.product === matched);
+    if (entry) used.add(entry.filename);
+  }
+  return used;
+}
+
+/** Deletes `content/products/<filename>` (a GitHub commit when configured, else from disk). */
+export async function deleteProductFile(filename: string): Promise<void> {
+  if (!filename.endsWith(".json") || filename.includes("/") || filename.includes("\\")) {
+    throw new Error(`Invalid product filename: ${filename}`);
+  }
+  if (githubEnabled()) {
+    await deleteRepoFile({
+      repoPath: toRepoContentPath(`content/products/${filename}`),
+      message: `Admin: delete product ${filename}`,
+    });
+    return;
+  }
+  await unlink(path.join(process.cwd(), "content", "products", filename)).catch(() => {});
 }
 
 /**

@@ -61,37 +61,48 @@ export async function getProductsRuntime(): Promise<Product[]> {
 }
 
 /**
- * Raw product files from the same source the public site reads (GitHub when configured, else disk).
- * Unlike `getProductsRuntime`, this throws instead of silently falling back, because admin
- * callers would otherwise show or overwrite a stale catalog.
- * A file that fails to load is returned with `raw: null` so its filename stays reserved.
+ * Raw JSON files under `content/<dir>` from the same source the public site reads
+ * (GitHub when configured, else disk). Admin callers use this so they never show or
+ * overwrite a stale catalog. A file that fails to load comes back with `raw: null`
+ * so its filename stays reserved.
  */
-export async function getProductFilesRuntime(): Promise<{ filename: string; raw: string | null }[]> {
+async function getContentFilesRuntime(
+  dir: "products" | "blog",
+  opts: { requireNonEmpty: boolean }
+): Promise<{ filename: string; raw: string | null }[]> {
   noStore();
   if (githubEnabled()) {
-    const files = (await listDirectoryFiles("content/products")).filter((f) => f.endsWith(".json")).sort();
-    // listDirectoryFiles returns [] on API errors; an empty catalog is never valid here.
-    if (files.length === 0) throw new Error("Could not list content/products from GitHub");
+    const files = (await listDirectoryFiles(`content/${dir}`)).filter((f) => f.endsWith(".json")).sort();
+    // listDirectoryFiles returns [] on API errors, so an empty list can't be trusted where it is never valid.
+    if (opts.requireNonEmpty && files.length === 0) throw new Error(`Could not list content/${dir} from GitHub`);
     return await Promise.all(
       files.map(async (filename) => {
         try {
-          return { filename, raw: await fetchTextFile(`content/products/${filename}`) };
+          return { filename, raw: await fetchTextFile(`content/${dir}/${filename}`) };
         } catch (e) {
-          console.error(`Failed to fetch product ${filename} from GitHub:`, e);
+          console.error(`Failed to fetch ${dir}/${filename} from GitHub:`, e);
           return { filename, raw: null };
         }
       })
     );
   }
 
-  const dir = path.join(process.cwd(), "content", "products");
-  const files = (await readdir(dir).catch(() => [] as string[])).filter((f) => f.endsWith(".json")).sort();
+  const abs = path.join(process.cwd(), "content", dir);
+  const files = (await readdir(abs).catch(() => [] as string[])).filter((f) => f.endsWith(".json")).sort();
   return await Promise.all(
     files.map(async (filename) => ({
       filename,
-      raw: await readFile(path.join(dir, filename), "utf8").catch(() => null),
+      raw: await readFile(path.join(abs, filename), "utf8").catch(() => null),
     }))
   );
+}
+
+export function getProductFilesRuntime() {
+  return getContentFilesRuntime("products", { requireNonEmpty: true });
+}
+
+export function getBlogFilesRuntime() {
+  return getContentFilesRuntime("blog", { requireNonEmpty: false });
 }
 
 export async function getBlogPostsRuntime(

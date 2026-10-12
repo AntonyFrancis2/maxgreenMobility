@@ -106,6 +106,7 @@ export default function AdminEditPage() {
                   const data = (await res.json()) as {
                     site?: SiteConfig;
                     createdProductIds?: string[];
+                    deletedProductFiles?: string[];
                   };
                   if (data.site) {
                     setSite(deepClone(data.site));
@@ -113,7 +114,10 @@ export default function AdminEditPage() {
                   const created = data.createdProductIds?.length
                     ? ` New JSON: ${data.createdProductIds.join(", ")} — edit details under Solutions → Products.`
                     : "";
-                  setStatus(`Saved site.${created} Refresh if needed.`.trim());
+                  const deleted = data.deletedProductFiles?.length
+                    ? ` Deleted removed products: ${data.deletedProductFiles.join(", ")}.`
+                    : "";
+                  setStatus(`Saved site.${created}${deleted} Refresh if needed.`.trim());
 
                   const pres = await fetch("/api/admin/products");
                   if (pres.ok) {
@@ -964,6 +968,34 @@ export default function AdminEditPage() {
                         >
                           {productSaving ? "Saving…" : "Save Product"}
                         </Button>
+
+                        <button
+                          type="button"
+                          className="w-full rounded-xl bg-red-50 px-4 py-2.5 text-sm font-bold text-red-600 ring-1 ring-red-200 hover:bg-red-100 transition-colors"
+                          onClick={async () => {
+                            if (!confirm(`Delete "${prod.name}" (${entry.filename})? This cannot be undone.`)) return;
+                            setStatus(null);
+                            try {
+                              const res = await fetch("/api/admin/products", {
+                                method: "DELETE",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ filename: entry.filename }),
+                              });
+                              if (!res.ok) {
+                                setStatus(await res.text());
+                                return;
+                              }
+                              setStatus(`Deleted product: ${prod.name}`);
+                              const remaining = products.filter((x) => x.filename !== entry.filename);
+                              setProducts(remaining);
+                              setActiveProductFile(remaining[0]?.filename ?? "");
+                            } catch {
+                              setStatus("Failed to delete product.");
+                            }
+                          }}
+                        >
+                          Delete Product
+                        </button>
                       </>
                     );
                   })()}
