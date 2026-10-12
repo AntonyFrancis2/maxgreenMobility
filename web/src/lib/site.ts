@@ -1,8 +1,4 @@
 import siteJson from "../../content/site.json";
-import electricCart from "../../content/products/electric-cart.json";
-import electricRickshaw from "../../content/products/electric-rickshaw.json";
-import electricScooter from "../../content/products/electric-scooter.json";
-import eLoader from "../../content/products/e-loader.json";
 
 export type ThemePresetId = "green" | "blue" | "teal" | "purple" | "greenSubtle" | "orangeSubtle";
 
@@ -140,17 +136,6 @@ export type BlogPost = {
   };
 };
 
-const products: Product[] = [electricRickshaw, electricCart, electricScooter, eLoader] as Product[];
-
 export function getSite(): SiteConfig {
   return siteJson as SiteConfig;
 }
-
-export function getProducts(): Product[] {
-  return products;
-}
-
-export function getProductById(productId: string): Product | undefined {
-  return products.find((p) => p.id === productId);
-}
-
