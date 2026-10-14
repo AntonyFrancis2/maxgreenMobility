@@ -12,14 +12,26 @@
       {
         "id": "v1",
         "label": "View 1",
-        "image": "/media/products/e-loader.svg"
+        "image": "/media/products/whatsapp_image_2026-10-14_at_1_06_16_pm__1_.jpeg"
       }
     ]
   },
   "specs": [
     {
-      "label": "Specification",
-      "value": "Edit in Solutions → Products"
+      "label": "Weight capacity",
+      "value": "160 kgs"
+    },
+    {
+      "label": "Body",
+      "value": "Mild steel"
+    },
+    {
+      "label": "Wheel",
+      "value": "Double wheel"
+    },
+    {
+      "label": "Water capacity",
+      "value": "65 liters"
     }
   ],
   "features": [
