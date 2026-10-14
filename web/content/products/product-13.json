@@ -5,8 +5,8 @@
   "media": {
     "mainImage": "/media/products/whatsapp_image_2026-10-14_at_1_06_16_pm__1_.jpeg",
     "demoVideo": {
-      "kind": "youtube",
-      "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+      "kind": "file",
+      "url": ""
     },
     "views": [
       {
